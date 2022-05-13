@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Listar Projetos{% endblock %}
+
+{% block content %}
+<h3>Lista de projetos registrados</h3>
+<p class = "lead">Meus projetos
+</p>
+
+<a href="{% url 'cadastrar-projeto' %}"class="btn btn-primary btn-sm">Adicionar projeto</a>
+
+<hr>
+<div class="table-responsive">
+    <table class="table-striped">
+        <tr>
+            <th>Titulo</th>
+            <th>Data Limite</th>
+            <th>Descrição</th>
+            <th>Opções</th>
+
+        </tr>
+
+        {% for projeto in object_list %}
+        <tr>
+            <td>{{ projeto.titulo }}</td>
+            <td>{{ projeto.dataLimite }}</td>
+            <td>{{ projeto.descreva }}</td>
+            <td>
+                <a href="{% url 'editar-projeto' projeto.pk %}"class="btn btn-warning btn-sm"title="Editar">Editar</a>
+                <a href="{% url 'excluir-projeto' projeto.pk %}"class="btn btn-danger btn-sm"title="Excluir">Excluir</a>
+            </td>
+        </tr>
+
+        {% empty %}
+        <tr>
+            <td colspan="4">Nenhum projeto Ativo.</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+
+
+{% endblock %}
