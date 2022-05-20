@@ -1,5 +1,6 @@
 from django.db import models
 from usuarios.models import Empresa
+from django.contrib.auth import get_user_model
 
 
 class Projeto(models.Model):
@@ -15,7 +16,7 @@ class Projeto(models.Model):
     atualiza = models.DateTimeField(auto_now=True)
     dataLimite = models.DateField(null=False, blank=False, verbose_name='Data Limite')
     descreva = models.TextField(null=False, blank=False, verbose_name='Descreva o Projeto')
-    username = models.OneToOneField(Empresa, on_delete=models.CASCADE, related_name='Empresa')
+    empresa = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='Empresa')
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, null=True)
 
     def __str__(self):
