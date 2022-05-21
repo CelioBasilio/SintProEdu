@@ -117,14 +117,23 @@ class ProjetoUpdate(LoginRequiredMixin, GroupRequiredMixin, UpdateView):
     template_name = 'cadastro/form.html'
     success_url = reverse_lazy('listar-projeto')
 
+    def get_context_data(self, *args, **kwargs):
+
+        context = super(ProjetoUpdate, self).get_context_data(*args, **kwargs)
+
+        context['titulo'] = 'Atualizar Projeto'
+        context['botao'] = 'Atualizar'
+
+        return context
+
 
 #    def __init__(self, **kwargs):
 #        super().__init__(kwargs)
 #        self.object = get_object_or_404(Projeto, pk=self.kwargs['pk'], empresa=self.request.user)
 
-    def get_object(self, queryset=None):
+#    def get_object(self, queryset=None):
 
-        return self.object
+ #       return self.object
     # ou self.object = Projeto.object.get(pk=self.kwargs['pk'], usuarioEmpresa=self.request.user)
 
 
@@ -184,6 +193,12 @@ class ProjetoList(LoginRequiredMixin, ListView):
     group_required = u'GrupoEmpresa'
     model = Projeto
     template_name = 'cadastro/listas/projeto.html'
+
+    def get_queryset(self):
+
+        self.object_list = Projeto.objects.filter(empresa_id=self.request.user)
+
+        return self.object_list
 
 
 #    def __init__(self, **kwargs):

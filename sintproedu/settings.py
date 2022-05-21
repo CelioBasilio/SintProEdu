@@ -118,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -143,6 +143,13 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
+
+# configuração de altenticação
+
+#LOGIN_REDIRECT_URL = ''
+LOGOUT_REDIRECT_URL = '/'
+
+LOGIN_URL = 'account_login'
 
 # Só precisa digitar a senha uma vez
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
