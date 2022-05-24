@@ -9,7 +9,7 @@ class EmpresaForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['email', 'password1', 'password2']
 
     def clean_email(self):
         e = self.cleaned_data['email']

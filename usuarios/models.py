@@ -15,7 +15,6 @@ class Aluno(models.Model):
     email = models.EmailField(max_length=100, unique=True, null=True)
     username = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
-
     def __str__(self):
         return "{} {} ({})".format(self.nome, self.telefone, self.email)
 

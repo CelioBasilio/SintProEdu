@@ -17,7 +17,7 @@ class EmpresaCreate(CreateView):
     success_url = reverse_lazy('atualiza-empresa')
 
     def form_valid(self, form):
-
+        form.instance.username = form.instance.email
         grupo = get_object_or_404(Group, name='GrupoEmpresa')
         url = super(EmpresaCreate, self).form_valid(form)
         self.object.groups.add(grupo)
