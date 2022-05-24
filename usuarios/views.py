@@ -4,6 +4,8 @@ from .forms import EmpresaForm, AlunoForm
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
 from .models import Aluno, Empresa
+from django.contrib.auth.mixins import LoginRequiredMixin
+from braces.views import GroupRequiredMixin
 
 
 # Create your views here.
@@ -12,9 +14,10 @@ from .models import Aluno, Empresa
 class EmpresaCreate(CreateView):
     template_name = 'usuarios/form.html'
     form_class = EmpresaForm
-    success_url = reverse_lazy('cadastrar-empresa')
+    success_url = reverse_lazy('atualiza-empresa')
 
     def form_valid(self, form):
+
         grupo = get_object_or_404(Group, name='GrupoEmpresa')
         url = super(EmpresaCreate, self).form_valid(form)
         self.object.groups.add(grupo)
@@ -77,34 +80,39 @@ class AlunoUpdate(UpdateView):
     def get_context_data(self, *args, **kwargs):
         context = super(AlunoUpdate, self).get_context_data(*args, **kwargs)
 
-        context['titulo'] = 'Atualizar dados do Aluno'
-        context['botao'] = 'Atualizar'
+        context['titulo'] = 'Dados do Aluno'
+        context['botao'] = 'Concluir'
 
         return context
 
 
-class EmpresaUpdate(UpdateView):
+class EmpresaUpdate(LoginRequiredMixin, GroupRequiredMixin, UpdateView):
+    login_url = reverse_lazy('account_login')
+    group_required = u'GrupoEmpresa'
     template_name = 'cadastro/form.html'
-
     model = Empresa
-
-    fields = ['nome', 'cnpj', 'representante', 'username', 'telefone', 'email']
-
-    success_url = reverse_lazy('listar-projeto')
-
-    def __init__(self, **kwargs):
-        super().__init__(kwargs)
-        self.object = get_object_or_404(Empresa, empresa=self.request.user)
+    fields = ['nome', 'representante', 'sobrenomerepre', 'telefone']
+    success_url = reverse_lazy('cadastrar-projeto')
 
     def get_object(self, queryset=None):
-
+        self.object = get_object_or_404(Empresa, username=self.request.user)
         return self.object
 
+    def form_valid(self, form):
 
-def get_context_data(self, *args, **kwargs):
-    context = super(EmpresaUpdate, self).get_context_data(*args, **kwargs)
+        form.instance.username = self.request.user
+        form.instance.email = self.request.user.email
+        # Antes do super objeto não foi criado
 
-    context['titulo'] = 'Atualizar dados da Empresa'
-    context['botao'] = 'Atualizar'
+        url = super(EmpresaUpdate, self).form_valid(form)
 
-    return context
+        # Depois do super objeto criado
+        return url
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(EmpresaUpdate, self).get_context_data(*args, **kwargs)
+
+        context['titulo'] = 'Dados da Empresa'
+        context['botao'] = 'Concluir'
+
+        return context
