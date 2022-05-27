@@ -40,7 +40,7 @@
                         <a class="nav-link dropdown-toggle" href="" id="dropdown02" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Usuário</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdown-item" href="#">Dados pessoais</a>
+                            <a class="dropdown-item" href="{% url 'accounts-profile' %}">Dados do Usuário</a>
                             <a class="dropdown-item" href="{% url 'account_logout' %}">Sair</a>
                         </div>
                     </li>
@@ -61,7 +61,7 @@
         </nav>
     </div>
     <div class="container box-2">
-    <main role="main" class="container">
+    <main role="main" class="container-fluid">
     {% block content %}
     {% endblock %}
             <br>
@@ -71,7 +71,7 @@
     </main>
     </div>
     <div class="container box-3">
-    <footer class="footer footer-dark bg-dark fixed-down">
+    <footer class="footer footer-dark bg-dark">
         <p>Unindo alunos e empresas para soluções reais "exibidos da base"</p>
     </footer>
     </div>
