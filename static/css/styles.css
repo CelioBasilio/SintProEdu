@@ -6,6 +6,8 @@
   width: 300px;
   padding: 10px;
 }
+
+
 .footer {
 position: fixed ;
 left : 0;
@@ -32,9 +34,7 @@ top: 130px;
     top: 135px;
     position: relative;
 }
-.custom-bar{
-    height: 80px;
-}
+
 .sobre{
 position: absolute;
     top: 120px;
