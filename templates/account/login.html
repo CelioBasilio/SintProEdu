@@ -18,21 +18,24 @@
 </p>
 {% else %}
 <div>
-    <div class="top-title">
-        <h3>Autenticação</h3>
+    <div class="container-fluid">
+        <h2 class="textcenter">Autenticação</h2>
     </div>
     <!-- class = "lead">Preencha todos os campos obrigatórios.
     </>-->
 
     <br>
-    <div class="row form">
+    <div class="container-fluid">
         <div class="col-md-4 mx-auto">
               <form action="" method="post">
                 {% csrf_token %}
 
                 {{ form|crispy }}
 
-                <button type="submit" class="btn btn-primary">Entrar</button>
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                  </div>
+
 
                   <hr>
 

@@ -62,8 +62,8 @@ class ProjetoCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
 
         context = super(ProjetoCreate, self).get_context_data(*args, **kwargs)
 
-        context['titulo'] = 'Cadastro do projeto'
-        context['botao'] = 'Registrar'
+        context['titulo'] = 'Cadastro de projeto'
+        context['botao'] = 'Cadastrar'
 
         return context
 
@@ -92,7 +92,7 @@ class AlunoCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
         context = super(AlunoCreate, self).get_context_data(*args, **kwargs)
 
         context['titulo'] = 'Dados do Aluno'
-        context['botao'] = 'Registrar'
+        context['botao'] = 'Cadastrar'
 
         return context
 
@@ -121,7 +121,7 @@ class ProjetoUpdate(LoginRequiredMixin, GroupRequiredMixin, UpdateView):
 
         context = super(ProjetoUpdate, self).get_context_data(*args, **kwargs)
 
-        context['titulo'] = 'Atualizar Projeto'
+        context['titulo'] = 'Atualizar dados do Projeto'
         context['botao'] = 'Atualizar'
 
         return context

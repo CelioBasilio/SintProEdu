@@ -20,13 +20,13 @@
 
 <div>
     <div class="top-title">
-        <h3>{{titulo}}</h3>
+        <h3 class="textcenter">{{titulo}}</h3>
     </div>
     <!-- class = "lead">Preencha todos os campos obrigatórios.
     </>-->
 
     <br>
-    <div class="row form">
+    <div class="container-fluid">
         <div class="col-md-4 mx-auto">
               <form action="" method="post">
                 {% csrf_token %}
@@ -34,6 +34,8 @@
                 {{ form|crispy }}
 
                 <button type="submit" class="btn btn-primary">{{botao}}</button>
+
+
 
                   <hr>
 

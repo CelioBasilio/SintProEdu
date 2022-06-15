@@ -21,8 +21,8 @@ class EmpresaForm(UserCreationForm):
 def get_context_data(self, *args, **kwargs):
     context = super(UserCreationForm, self).get_context_data(*args, **kwargs)
 
-    context['titulo'] = 'Registro de Empresa'
-    context['botao'] = 'Registrar'
+    context['titulo'] = 'Cadastro para Empresas'
+    context['botao'] = 'Cadastrar'
 
     return context
 
@@ -32,7 +32,7 @@ class AlunoForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['email', 'password1', 'password2']
 
         def clean_email(self):
             e = self.cleaned_data['email']
@@ -44,8 +44,8 @@ class AlunoForm(UserCreationForm):
 def get_context_data(self, *args, **kwargs):
     context = super(UserCreationForm, self).get_context_data(*args, **kwargs)
 
-    context['titulo'] = 'Registro de Alumo'
-    context['botao'] = 'Registrar'
+    context['titulo'] = 'Cadastro para Alunos'
+    context['botao'] = 'Cadastrar'
 
     return context
 

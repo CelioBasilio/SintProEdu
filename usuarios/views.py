@@ -32,7 +32,7 @@ class EmpresaCreate(CreateView):
 
         context = super(EmpresaCreate, self).get_context_data(*args, **kwargs)
 
-        context['titulo'] = 'Cadastro para Empresa'
+        context['titulo'] = 'Cadastro para Empresas'
         context['botao'] = 'Cadastrar'
 
         return context
@@ -91,8 +91,8 @@ class AlunoCreate(CreateView):
     def get_context_data(self, *args, **kwargs):
         context = super(AlunoCreate, self).get_context_data(*args, **kwargs)
 
-        context['titulo'] = 'Registro de Aluno'
-        context['botao'] = 'Registrar'
+        context['titulo'] = 'Cadastro para Alunos'
+        context['botao'] = 'Cadastrar'
 
         return context
 

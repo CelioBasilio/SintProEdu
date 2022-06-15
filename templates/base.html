@@ -63,19 +63,20 @@
             </div>
         </nav>
     </div>
-    <div class="container box-2">
+    <div class="box-2">
     <main role="main" class="container-fluid">
     {% block content %}
     {% endblock %}
             <br>
-    <br>
-            <br>
-    <br>
     </main>
     </div>
-    <div class="container box-3">
-
+        <div class="container box-3 left">
     </div>
+    <footer class="container-fluid footer footer-dark bg-dark fluid-down">
+        <p>Unindo alunos e empresas para soluções reais</p>
+    </footer>
+
+
 
 <script src="https://code.jquery.com/jquery-3.4.0.min.js"
     integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
@@ -84,9 +85,6 @@
     crossorigin="anonymous"></script>
 <script src="{% static 'js/scripts.js' %}"></script>
 
-    <footer style="background-color: #343a40; color:#fff;padding:.5em; text-align:center; position:fixed; bottom:0 ; left: 0; width:100%;" >
-        <p style="margin:0;">Unindo alunos e empresas para soluções reais "exibidos da base"</p>
-    </footer>
 </body>
 
 </html>

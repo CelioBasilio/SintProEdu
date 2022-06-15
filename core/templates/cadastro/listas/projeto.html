@@ -5,33 +5,63 @@
 {% block title %}Listar Projetos{% endblock %}
 
 {% block content %}
-<h3>Lista de projetos registrados</h3>
+
+<div class="row ">
+    <div class="col-2 navbar-expand-md bg-secondary fixed-left">
+    <ul class="nav flex-column">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">Active</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled">Disabled</a>
+  </li>
+</ul>
+    </div>
+
+
+      <div class="col-8">
+          <h2>Lista de projetos registrados</h2>
 <p class = "lead">Meus projetos
 </p>
 
-<a href="{% url 'cadastrar-projeto' %}"class="btn btn-primary btn-sm">Adicionar projeto</a>
-
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+<a href="{% url 'cadastrar-projeto' %}" class="btn btn-primary btn-sm">Adicionar novo projeto</a>
+</div>
 <hr>
-<div class="table-responsive">
-    <table class="table-striped">
-        <tr>
-            <th>Titulo</th>
-            <th>Data Limite</th>
-            <th>Descrição</th>
-            <th>Opções</th>
 
-        </tr>
+
+<div class="table-responsive">
+    <table>
 
         {% for projeto in object_list %}
         <tr>
+            <th>Titulo</th>
             <td>{{ projeto.titulo }}</td>
-            <td>{{ projeto.dataLimite }}</td>
-            <td>{{ projeto.descreva }}</td>
-            <td>
-                <a href="{% url 'editar-projeto' projeto.pk %}"class="btn btn-warning btn-sm"title="Editar">Editar</a>
-                <a href="{% url 'excluir-projeto' projeto.pk %}"class="btn btn-danger btn-sm"title="Excluir">Excluir</a>
-            </td>
         </tr>
+        <tr>
+            <th>Data Limite</th>
+            <td>{{ projeto.dataLimite }}</td>
+        </tr>
+            <th>Descrição</th>
+            <td>{{ projeto.descreva }}</td>
+        <tr>
+            <nobr>
+            <th>Opções</th>
+                <td>
+                <a href="{% url 'editar-projeto' projeto.pk %}" class="btn btn-warning btn-sm" title="Editar">Editar</a>
+                <a href="{% url 'excluir-projeto' projeto.pk %}" class="btn btn-danger btn-sm" title="Excluir">Excluir</a>
+                </td>
+            </nobr>
+        </tr>
+
+
+
 
         {% empty %}
         <tr>
@@ -41,6 +71,9 @@
 
     </table>
 </div>
+
+    </div>
+  </div>
 
 
 {% endblock %}

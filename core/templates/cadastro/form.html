@@ -4,26 +4,30 @@
 
 {% load crispy_forms_tags %}
 
-{% block title %}Cadastro Empresa{% endblock %}
+{% block title %}Cadastro Projeto{% endblock %}
 
 {% block content %}
 <div>
-    <div class="top-title">
-        <h3>{{titulo}}</h3>
+    <div class="container-fluid">
+        <h2 class="textcenter">{{titulo}}</h2>
     </div>
-    <div class = "rom form col-md-8 mx-auto">
+    <br>
+    <div class= "lead col-md-8 mx-auto">
         Preencha todos os campos obrigatórios.
     </div>
 
     <br>
-    <div class="row form">
-        <div class="col-md-8 mx-auto">
+    <div class="container-fluid">
+        <div class="col-md-6 mx-auto">
               <form action="" method="post">
                 {% csrf_token %}
 
                 {{ form|crispy }}
 
-                <button type="submit" class="btn btn-primary">{{botao}}</button>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                   <button type="submit" class="btn btn-primary">{{botao}}</button>
+                </div>
+
 
                   <hr>
 
@@ -32,5 +36,6 @@
         </div>
     </div>
 </div>
+    </div>
 
 {% endblock %}

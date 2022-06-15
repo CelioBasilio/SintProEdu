@@ -1,4 +1,15 @@
-.container{
+body {
+ min-height: 100vh;
+ }
+
+
+.container-fluid {
+    position: relative;
+    padding: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .right {
   position: absolute;
@@ -6,24 +17,37 @@
   width: 300px;
   padding: 10px;
 }
+.layout-right {
+  position: absolute;
+  right: 0px;
+  width: 1000px;
+  padding: 10px;
+}
 
+.left {
+  position: absolute;
+  left: 0px;
+  width: 300px;
+  padding: 10px;
+}
 
 .footer {
-position: fixed ;
-left : 0;
-width : 100%;
-color : white;
+color : #6c757d;
 text-align : center;
-bottom: 0;
-padding-top: 10px;
+padding: 30px;
 }
+
 .box-1{
 display: flex;
 flex-direction: row-reverse;
 }
+
 .box-2{
-padding-top: 100px;
+padding-top: 60px;
+min-height: 87.3vh;
+width: auto;
 }
+
 .top-title{
 position: absolute;
 width: 300px;
@@ -39,4 +63,12 @@ top: 130px;
 position: absolute;
     top: 120px;
     width: 1000px;
+}
+
+.textcenter {
+text-align : center;
+}
+
+h2{
+padding-top: 60px;
 }
