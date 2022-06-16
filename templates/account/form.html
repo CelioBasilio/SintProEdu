@@ -8,8 +8,8 @@
 
 {% block content %}
 <div>
-    <div class="top-title">
-        <h3 class="textcenter">{{ titulo }}</h3>
+    <div class="container-fluid">
+        <h2 class="textcenter">{{titulo}}</h2>
     </div>
     <!-- class = "lead">Preencha todos os campos obrigatórios.
     </>-->
@@ -21,8 +21,10 @@
                 {% csrf_token %}
 
                 {{ form|crispy }}
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="submit" class="btn btn-primary">{{botao}}</button>
+                </div>
 
-                <button type="submit" class="btn btn-primary">{{ botao }}</button>
 
                   <hr>
 

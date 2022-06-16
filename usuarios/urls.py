@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import EmpresaCreate, AlunoCreate, EmpresaUpdate, AlunoUpdate, AccountsProfile
+from .views import EmpresaCreate, AlunoCreate, EmpresaUpdate, AlunoUpdate, EmpresaDelete, AlunoDelete, AccountsProfile
 
 
 urlpatterns = [
@@ -13,6 +13,8 @@ urlpatterns = [
     path('registrar/aluno/', AlunoCreate.as_view(), name='registrar-aluno'),
     path('atualiza/empresa/', EmpresaUpdate.as_view(), name='atualiza-empresa'),
     path('atualiza/aluno/', AlunoUpdate.as_view(), name='atualiza-aluno'),
+    path('excluir/empresa/', EmpresaDelete.as_view(), name='excluir-empresa'),
+    path('excluir/aluno/', AlunoDelete.as_view(), name='excluir-aluno'),
     path('accounts/profile/', AccountsProfile.as_view(), name='accounts-profile'),
 
 ]
