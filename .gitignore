@@ -1,7 +1,7 @@
 *.pyc
 .venv
 .env
-_/pycache_/
+__pycache__/
 *.db
 *.sqlite3
 local_settings.py
