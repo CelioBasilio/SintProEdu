@@ -7,7 +7,7 @@
 {% block content %}
 
 <div class="row ">
-    {% if group != "GrupoEmpresa" %}
+    {% if user.groups.all.0.name == "GrupoAluno" %}
     <div class="col-2 navbar-expand-md bg-secondary fixed-left">
            <ul class="nav flex-column">
 
@@ -17,7 +17,7 @@
            </ul>
     </div>
     {% endif %}
-    {% if group == "GrupoEmpresa" %}
+    {% if user.groups.all.0.name == "GrupoEmpresa" %}
     <div class="col-2 navbar-expand-md bg-secondary fixed-left">
     <ul class="nav flex-column">
 
@@ -39,7 +39,7 @@
 
       <div class="col-8">
           <h2 class="textcenter">Lista de projetos registrados</h2>
-          {% if group == "GrupoEmpresa" %}
+          {% if user.groups.all.0.name == "GrupoEmpresa" %}
           <p class = "lead">Meus projetos
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 <a href="{% url 'cadastrar-projeto' %}" class="btn btn-primary btn-sm">Adicionar novo projeto</a>
@@ -63,7 +63,7 @@
             <th>Descrição</th>
             <td>{{ projeto.descreva }}</td>
         </tr>
-        {% if group == "GrupoEmpresa" %}
+        {% if user.groups.all.0.name == "GrupoEmpresa" %}
         <tr>
 
             <th>Opções</th>

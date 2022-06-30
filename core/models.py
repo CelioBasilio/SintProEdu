@@ -1,5 +1,4 @@
 from django.db import models
-from usuarios.models import Empresa
 from django.contrib.auth import get_user_model
 
 
@@ -21,3 +20,22 @@ class Projeto(models.Model):
 
     def __str__(self):
         return "{} {} ({})".format(self.titulo, self.dataInicio, self.descreva)
+
+
+class Mensagens(models.Model):
+
+    STATUS_CHOICES = (
+        ("P", "Mensagem postada"),
+        ("V", "Mensagem Visualizada")
+    )
+
+    email_de = models.EmailField(max_length=50, null=False, verbose_name='email de')
+    email_para = models.EmailField(max_length=50, null=False, verbose_name='email para')
+    dataEnvio = models.DateTimeField(auto_now_add=True, verbose_name='Data de Envio')
+    atualiza = models.DateTimeField(auto_now=True)
+    mensagem = models.TextField(null=False, blank=False, verbose_name='Descreva o Projeto')
+    usuario = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='usuario')
+    statusMensagem = models.CharField(max_length=1, choices=STATUS_CHOICES, null=True)
+
+    def __str__(self):
+        return "{} {} ({})".format(self.email_para, self.dataEnvio, self.mensagem)
