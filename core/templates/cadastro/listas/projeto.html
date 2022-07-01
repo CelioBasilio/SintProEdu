@@ -40,52 +40,52 @@
       <div class="col-8">
           <h2 class="textcenter">Lista de projetos registrados</h2>
           {% if user.groups.all.0.name == "GrupoEmpresa" %}
-          <p class = "lead">Meus projetos
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-<a href="{% url 'cadastrar-projeto' %}" class="btn btn-primary btn-sm">Adicionar novo projeto</a>
-</div>
-<hr>
-{% endif %}
+          <p class = "lead">Meus projetos</p>
 
-<div class="table-responsive">
-    <table>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="{% url 'cadastrar-projeto' %}" class="btn btn-primary btn-sm">Adicionar novo projeto</a>
+            </div>
+            <hr>
+                {% endif %}
 
-        {% for projeto in object_list %}
-        <tr>
-            <th>Titulo</th>
-            <td>{{ projeto.titulo }}</td>
-        </tr>
-        <tr>
-            <th>Data Limite</th>
-            <td>{{ projeto.dataLimite }}</td>
-        </tr>
-        <tr>
-            <th>Descrição</th>
-            <td>{{ projeto.descreva }}</td>
-        </tr>
-        {% if user.groups.all.0.name == "GrupoEmpresa" %}
-        <tr>
+            <div class="table-responsive">
+            <table>
 
-            <th>Opções</th>
-                <td>
-                <a href="{% url 'editar-projeto' projeto.pk %}" class="btn btn-warning btn-sm" title="Editar">Editar</a>
-                <a href="{% url 'excluir-projeto' projeto.pk %}" class="btn btn-danger btn-sm" title="Excluir">Excluir</a>
-                </td>
-        </tr>
-        {% endif %}
+                 {% for projeto in object_list %}
+                    <tr>
+                    <th>Titulo</th>
+                    <td>{{ projeto.titulo }}</td>
+                    </tr>
+                    <tr>
+                    <th>Data Limite</th>
+                    <td>{{ projeto.dataLimite }}</td>
+                    </tr>
+                    <tr>
+                    <th>Descrição</th>
+                    <td>{{ projeto.descreva }}</td>
+                    </tr>
+                    {% if user.groups.all.0.name == "GrupoEmpresa" %}
+                    <tr>
+
+                    <th>Opções</th>
+                        <td>
+                            <a href="{% url 'editar-projeto' projeto.pk %}" class="btn btn-warning btn-sm" title="Editar">Editar</a>
+                            <a href="{% url 'excluir-projeto' projeto.pk %}" class="btn btn-danger btn-sm" title="Excluir">Excluir</a>
+                        </td>
+                    </tr>
+                    {% endif %}
 
 
 
-        {% empty %}
-        <tr>
-            <td colspan="4">Nenhum projeto Ativo.</td>
-        </tr>
-        {% endfor %}
+                    {% empty %}
+                     <tr>
+                    <td colspan="4">Nenhum projeto Ativo.</td>
+                    </tr>
+                 {% endfor %}
 
-    </table>
-</div>
-
-    </div>
+                </table>
+                </div>
+      </div>
   </div>
 
 
