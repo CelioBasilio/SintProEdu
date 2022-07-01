@@ -116,7 +116,7 @@ class AlunoUpdate(LoginRequiredMixin, GroupRequiredMixin, UpdateView):
     template_name = 'cadastro/form.html'
     model = Aluno
     fields = ['nome', 'sobrenome', 'cpf', 'telefone']
-    success_url = reverse_lazy('listar-projeto')
+    success_url = reverse_lazy('listar-proalu')
 
     def get_object(self, queryset=None):
         self.object = get_object_or_404(Aluno, username=self.request.user)

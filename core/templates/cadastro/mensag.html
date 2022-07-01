@@ -4,25 +4,35 @@
 
 {% load crispy_forms_tags %}
 
-{% block title %}{{titulo}}{% endblock %}
+{% block title %}Enviar Mensagem{% endblock %}
 
 {% block content %}
 <div>
     <div class="container-fluid">
         <h2 class="textcenter">{{titulo}}</h2>
     </div>
-    <!-- class = "lead">Preencha todos os campos obrigatórios.
-    </>-->
+    <br>
+    {% if user.groups.all.0.name == "GrupoAluno" %}
+    <div class= "lead col-md-8 mx-auto">
+        Sua mensagem será encaminhada para a empresa.
+    </div>
+    {% endif %}
+    {% if user.groups.all.0.name == "GrupoEmpresa" %}
+    <div class= "lead col-md-8 mx-auto">
+        Sua mensagem será encaminhada para o aluno.
+    </div>
+    {% endif %}
 
     <br>
     <div class="container-fluid">
-        <div class="col-md-4 mx-auto">
+        <div class="col-md-6 mx-auto">
               <form action="" method="post">
                 {% csrf_token %}
 
                 {{ form|crispy }}
+
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit" class="btn btn-primary">{{botao}}</button>
+                   <button type="submit" class="btn btn-primary">{{botao}}</button>
                 </div>
 
 
@@ -33,5 +43,6 @@
         </div>
     </div>
 </div>
+    </div>
 
 {% endblock %}

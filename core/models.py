@@ -33,7 +33,7 @@ class Mensagens(models.Model):
     email_para = models.EmailField(max_length=50, null=False, verbose_name='email para')
     dataEnvio = models.DateTimeField(auto_now_add=True, verbose_name='Data de Envio')
     atualiza = models.DateTimeField(auto_now=True)
-    mensagem = models.TextField(null=False, blank=False, verbose_name='Descreva o Projeto')
+    mensagem = models.TextField(null=False, blank=False, verbose_name='Conteúdo da mensagem')
     usuario = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='usuario')
     statusMensagem = models.CharField(max_length=1, choices=STATUS_CHOICES, null=True)
 

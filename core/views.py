@@ -82,6 +82,7 @@ class ProjetoList(LoginRequiredMixin, ListView, GroupRequiredMixin):
     template_name = 'cadastro/listas/projeto.html'
 
     group_required = u'GrupoEmpresa'
+
     def get_queryset(self):
 
             self.object_list = Projeto.objects.filter(empresa_id=self.request.user)
@@ -112,28 +113,30 @@ class AlunoList(LoginRequiredMixin, ListView):
 
 # Mensagens
 
-class MenssagensCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
+class MensagensCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
 
     login_url = reverse_lazy('account_login')
     group_required = u'GrupoEmpresa', u'GrupoAluno'
     model = Mensagens
     fields = ['mensagem']
-    template_name = 'cadastro/form.html'
-    success_url = reverse_lazy('listar-projeto')
+    template_name = 'cadastro/mensag.html'
+    success_url = reverse_lazy('listar-proalu')
 
     def form_valid(self, form):
         form.instance.usuario = self.request.user
         form.instance.email_de = self.request.user
-        form.instance.emailpara = self.request
+        form.instance.email_para = self.kwargs['pk']
+        form.instance.statusMensagem = 'P'
         # Antes do super objeto não foi criado
 
         url = super().form_valid(form)
+
         # Depois do super objeto criado
         return url
 
     def get_context_data(self, *args, **kwargs):
 
-        context = super(MenssagensCreate, self).get_context_data(*args, **kwargs)
+        context = super(MensagensCreate, self).get_context_data(*args, **kwargs)
 
         context['titulo'] = 'Enviar Mensagem'
         context['botao'] = 'Enviar'

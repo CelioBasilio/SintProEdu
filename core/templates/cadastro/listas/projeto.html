@@ -24,15 +24,6 @@
   <li class="nav-item">
     <a class="nav-link active" aria-current="page" href="{% url 'atualiza-empresa' %}">Editar Cadastro</a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled">Disabled</a>
-  </li>
 </ul>
     </div>
 {% endif %}
@@ -57,13 +48,22 @@
                     <td>{{ projeto.titulo }}</td>
                     </tr>
                     <tr>
+                    <th>Descrição</th>
+                    <td>{{ projeto.descreva }}</td>
+                    </tr>
+                    <tr>
+                    <th>Postado</th>
+                    <td>{{ projeto.dataInicio }}</td>
+                    </tr>
+                    <tr>
                     <th>Data Limite</th>
                     <td>{{ projeto.dataLimite }}</td>
                     </tr>
                     <tr>
-                    <th>Descrição</th>
-                    <td>{{ projeto.descreva }}</td>
+                        <th>Status</th>
+                        <td>{{ projeto.status }}</td>
                     </tr>
+
                     {% if user.groups.all.0.name == "GrupoEmpresa" %}
                     <tr>
 
@@ -74,6 +74,17 @@
                         </td>
                     </tr>
                     {% endif %}
+
+                    {% if user.groups.all.0.name == "GrupoAluno" %}
+                    <tr>
+
+                        <th>Opções</th>
+                        <td>
+                            <a href="{% url 'enviar-mensagem' projeto.pk %}" class="btn btn-primary btn-sm" title="Mensagem">Enviar mensagem</a>
+                        </td>
+                    </tr>
+                    {% endif %}
+
 
 
 
