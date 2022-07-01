@@ -36,14 +36,11 @@
                         <a class="nav-link" href="{% url 'pages:sobre' %}">Sobre</a>
                     </li>
                     {% if user.is_authenticated %}
+                    {% if group == "GrupoEmpresa" %}
                     <li class="nav-item">
-                        {% if user.groups.all.0.name == "GrupoEmpresa" %}
                         <a class="nav-link" href="{% url 'listar-projeto' %}">Projetos</a>
-                        {% endif %}
-                        {% if user.groups.all.0.name == "GrupoAluno" %}
-                        <a class="nav-link" href="{% url 'listar-proalu' %}">Projetos</a>
-                        {% endif %}
                     </li>
+                    {% endif %}
                      <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="" id="dropdown02" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Usuário</a>
