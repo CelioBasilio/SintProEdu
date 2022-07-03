@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
 
-class EmpresaForm(UserCreationForm):
+class UserForm(UserCreationForm):
     email = forms.EmailField(max_length=100)
 
     class Meta:
@@ -16,36 +16,3 @@ class EmpresaForm(UserCreationForm):
         if User.objects.filter(email=e).exists():
             raise ValidationError('O email {} já está cadastrado.'.format(e))
         return e
-
-
-def get_context_data(self, *args, **kwargs):
-    context = super(UserCreationForm, self).get_context_data(*args, **kwargs)
-
-    context['titulo'] = 'Cadastro para Empresas'
-    context['botao'] = 'Cadastrar'
-
-    return context
-
-
-class AlunoForm(UserCreationForm):
-    email = forms.EmailField(max_length=100)
-
-    class Meta:
-        model = User
-        fields = ['email', 'password1', 'password2']
-
-        def clean_email(self):
-            e = self.cleaned_data['email']
-            if User.objects.filter(email=e).exists():
-                raise ValidationError('O email {} já está cadastrado.'.format(e))
-            return e
-
-
-def get_context_data(self, *args, **kwargs):
-    context = super(UserCreationForm, self).get_context_data(*args, **kwargs)
-
-    context['titulo'] = 'Cadastro para Alunos'
-    context['botao'] = 'Cadastrar'
-
-    return context
-

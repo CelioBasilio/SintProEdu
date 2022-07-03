@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 class Projeto(models.Model):
 
     STATUS_CHOICES = (
-        ("P", "Projeto postado"),
+        ("P", "Aguardado Alunos"),
         ("F", "Em andamento"),
         ("E", "Realizados"),
     )

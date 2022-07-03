@@ -1,5 +1,7 @@
 from django.urls import path
-from .views import MensagensCreate ,EmpresaList, ProjetoList, AlunoList, ProjetoDelete, ProjetoUpdate, ProjetoCreate, ProjetoListAluno
+from .views import EmpresaList, ProjetoList, AlunoList
+from .views import MensagensList, MensagensCreate
+from .views import ProjetoDelete, ProjetoUpdate, ProjetoCreate, ProjetoListAluno
 
 urlpatterns = [
     # path('endereço/', MinhaView.as_view(), name='nome da url'),
@@ -10,6 +12,7 @@ urlpatterns = [
 
     path('listar/empresa/', EmpresaList.as_view(), name='listar-empresa'),
     path('listar/projeto/', ProjetoList.as_view(), name='listar-projeto'),
+    path('listar/mensagens/', MensagensList.as_view(), name='listar-mensagem'),
     path('listar/proalu/', ProjetoListAluno.as_view(), name='listar-proalu'),
     path('listar/aluno/', AlunoList.as_view(), name='listar-aluno'),
     ]

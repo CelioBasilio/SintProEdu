@@ -5,11 +5,40 @@
 {% block title %}Cadastro Empresa{% endblock %}
 
 {% block content %}
+<div class="row ">
+    {% if user.groups.all.0.name == "GrupoAluno" %}
+    <div class="col-2 navbar-expand-md bg-secondary fixed-left">
+           <ul class="nav flex-column">
+
+                <li class="nav-item">
+                     <a class="nav-link active" aria-current="page" href="{% url 'atualiza-aluno' %}">Editar Cadastro</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'listar-mensagem' %}">Minhas Mensagens</a>
+                </li>
+           </ul>
+    </div>
+    {% endif %}
+    {% if user.groups.all.0.name == "GrupoEmpresa" %}
+    <div class="col-2 navbar-expand-md bg-secondary fixed-left">
+    <ul class="nav flex-column">
+
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="{% url 'atualiza-empresa' %}">Editar Cadastro</a>
+  </li>
+         <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="{% url 'listar-mensagem' %}">Minhas Mensagens</a>
+  </li>
+</ul>
+    </div>
+{% endif %}
+
+<div class="col-8">
 <h2>Excluir Registros</h2>
 <p class = "lead">
     Confirme para excluir o registro definitivamente.
 </p>
-
+<hr>
 <br>
 <form action="" method="post">
     <p>
@@ -18,10 +47,13 @@
     {% csrf_token %}
 
     {{ form.as_p }}
-
+    <a href="{% url 'listar-projeto' %}" class="btn btn-primary " title="Editar">Voltar</a>
     <button type="submit" class="btn btn-danger">Excluir</button>
 
 
-</form>
 
+
+</form>
+</div>
+</div>
 {% endblock %}

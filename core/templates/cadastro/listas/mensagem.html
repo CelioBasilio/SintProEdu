@@ -2,7 +2,9 @@
 
 {% load static %}
 
-{% block title %}Listar Projetos{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block title %}Mensagens{% endblock %}
 
 {% block content %}
 
@@ -17,6 +19,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'listar-mensagem' %}">Minhas Mensagens</a>
                 </li>
+
            </ul>
     </div>
     {% endif %}
@@ -27,62 +30,51 @@
   <li class="nav-item">
     <a class="nav-link active" aria-current="page" href="{% url 'atualiza-empresa' %}">Editar Cadastro</a>
   </li>
-         <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="{% url 'listar-mensagem' %}">Minhas Mensagens</a>
-  </li>
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'listar-mensagem' %}">Minhas Mensagens</a>
+        </li>
 </ul>
     </div>
 {% endif %}
 
       <div class="col-8">
-          <h2 class="textcenter">Lista de projetos registrados</h2>
-          {% if user.groups.all.0.name == "GrupoEmpresa" %}
-          <p class = "lead">Meus projetos</p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a href="{% url 'cadastrar-projeto' %}" class="btn btn-primary btn-sm">Adicionar novo projeto</a>
-            </div>
+          <h2 class="textcenter">Mensagens</h2>
+          <p class = "lead">Minhas mensagens</p>
             <hr>
-                {% endif %}
+
             <div class="table-responsive">
             <table>
-                 {% for projeto in object_list %}
+
+                 {% for mensagens in object_list %}
                     <tr>
-                    <th>Titulo</th>
-                    <td>{{ projeto.titulo }}</td>
+                        <th>Mensagem de</th>
+                        <td>{{ mensagens.email_de }}</td>
                     </tr>
                     <tr>
-                    <th>Descrição</th>
-                    <td>{{ projeto.descreva }}</td>
+                        <th>Mensagem para</th>
+                        <td>{{ mensagens.email_para }}</td>
                     </tr>
                     <tr>
-                    <th>Postado</th>
-                    <td>{{ projeto.dataInicio }}</td>
+                        <th>Mensagem</th>
+                        <td>{{ mensagens.mensagem }}</td>
                     </tr>
                     <tr>
-                    <th>Data Limite</th>
-                    <td>{{ projeto.dataLimite }}</td>
+                        <th>Data de envio</th>
+                        <td>{{ mensagens.dataEnvio }}</td>
                     </tr>
                     <tr>
                         <th>Status</th>
-                        <td>{%if  projeto.status  == 'P' %}
-                            Recrutando alunos
-                            {% endif %}
-                            {%if  projeto.status  == 'F' %}
-                            Solução em andamento
-                            {% endif %}
-                            {%if  projeto.status  == 'E' %}
-                            Finalizado
-                            {% endif %}
-                        </td>
+                        <td>{{ mensagens.statusMensagem }}</td>
                     </tr>
+
 
                     {% if user.groups.all.0.name == "GrupoEmpresa" %}
                     <tr>
 
                     <th>Opções</th>
                         <td>
-                            <a href="{% url 'editar-projeto' projeto.pk %}" class="btn btn-warning btn-sm" title="Editar">Editar</a>
-                            <a href="{% url 'excluir-projeto' projeto.pk %}" class="btn btn-danger btn-sm" title="Excluir">Excluir</a>
+                            <a href="#" class="btn btn-warning btn-sm" title="Editar">Editar</a>
+                            <a href="#" class="btn btn-danger btn-sm" title="Excluir">Excluir</a>
                         </td>
                     </tr>
                     {% endif %}
@@ -92,16 +84,20 @@
 
                         <th>Opções</th>
                         <td>
-                            <a href="{% url 'enviar-mensagem' projeto.pk %}" class="btn btn-primary btn-sm" title="Mensagem">Enviar mensagem</a>
+                            <a href="#" class="btn btn-primary btn-sm" title="Mensagem">Enviar mensagem</a>
                         </td>
                     </tr>
                     {% endif %}
 
+
+
+
                     {% empty %}
                      <tr>
-                    <td colspan="4">Nenhum projeto Ativo.</td>
+                    <td colspan="4">Nenhuma Mensagem.</td>
                     </tr>
                  {% endfor %}
+
                 </table>
                 </div>
       </div>

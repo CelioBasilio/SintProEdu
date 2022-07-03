@@ -6,7 +6,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from braces.views import GroupRequiredMixin
 from django.shortcuts import get_object_or_404
 from usuarios.models import Aluno, Empresa
-from django.contrib.auth import get_user_model
 
 
 # criar Projetos views
@@ -16,12 +15,13 @@ class ProjetoCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     login_url = reverse_lazy('account_login')
     group_required = u'GrupoEmpresa'
     model = Projeto
-    fields = ['titulo', 'status', 'dataLimite', 'descreva']
+    fields = ['titulo', 'dataLimite', 'descreva']
     template_name = 'cadastro/form.html'
     success_url = reverse_lazy('listar-projeto')
 
     def form_valid(self, form):
         form.instance.empresa = self.request.user
+        form.instance.status = 'P'
         # Antes do super objeto não foi criado
 
         url = super().form_valid(form)
@@ -125,11 +125,11 @@ class MensagensCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.usuario = self.request.user
         form.instance.email_de = self.request.user
-        form.instance.email_para = self.kwargs['pk']
         form.instance.statusMensagem = 'P'
         # Antes do super objeto não foi criado
 
         url = super().form_valid(form)
+
 
         # Depois do super objeto criado
         return url
@@ -142,3 +142,17 @@ class MensagensCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
         context['botao'] = 'Enviar'
 
         return context
+
+
+class MensagensList(LoginRequiredMixin, ListView, GroupRequiredMixin):
+
+    model = Mensagens
+    template_name = 'cadastro/listas/mensagem.html'
+
+    group_required = u'GrupoEmpresa', u'GrupoAluno'
+
+    def get_queryset(self):
+
+            self.object_list = Mensagens.objects.filter(usuario=self.request.user)
+
+            return self.object_list

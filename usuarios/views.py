@@ -1,7 +1,7 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.contrib.auth.models import Group
-from .forms import EmpresaForm, AlunoForm
+from .forms import UserForm
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
 from .models import Aluno, Empresa
@@ -15,7 +15,7 @@ from django.contrib.auth.models import User
 
 class EmpresaCreate(CreateView):
     template_name = 'account/form.html'
-    form_class = EmpresaForm
+    form_class = UserForm
     success_url = reverse_lazy('atualiza-empresa')
 
     def form_valid(self, form):
@@ -88,7 +88,7 @@ class EmpresaDelete(LoginRequiredMixin, GroupRequiredMixin, DeleteView):
 
 class AlunoCreate(CreateView):
     template_name = 'account/form.html'
-    form_class = AlunoForm
+    form_class = UserForm
     success_url = reverse_lazy('atualiza-aluno')
 
     def form_valid(self, form):

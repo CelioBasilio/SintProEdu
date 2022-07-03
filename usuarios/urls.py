@@ -1,8 +1,8 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import EmpresaCreate, AlunoCreate, EmpresaUpdate, AlunoUpdate, EmpresaDelete, AlunoDelete, AccountsProfile
-
-
+from .views import EmpresaCreate, EmpresaUpdate, EmpresaDelete
+from .views import AlunoCreate, AlunoUpdate, AlunoDelete
+from .views import AccountsProfile
 urlpatterns = [
     # path('endereço/', MinhaView.as_view(), name='nome da url'),
     path('login/', auth_views.LoginView.as_view(
