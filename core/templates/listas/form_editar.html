@@ -1,0 +1,62 @@
+{% extends "nav.html" %}
+
+{% load static %}
+
+{% block 'head2' %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock%}
+
+
+{% block title %}{{ titulo }}{% endblock %}
+
+{% block content %}
+<div class="row col-12">
+
+    <div class="fundo col-md-2">
+            
+      <a href="{% url 'listar-mensagem' %}">
+        <img class="iconmensagem" src="{% static 'img/mensagem.png' %}">
+      </a>
+      <a href="{% url 'listar-projeto' %}">
+        <img class="iconprojeto" src="{% static 'img/projeto.png' %}">
+      </a>
+
+    </div>
+
+    <div class="col-6 areaprojeto">
+        
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert {{message.tags}}">
+            {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        
+        <h2 class="textcenter">{{ titulo }}{{ projeto.titulo }}</h2>
+      
+
+        <br>
+        <div class= "lead">
+        Preencha todos os campos.
+        <hr>
+        </div>
+        
+        <form class="formulario" action="{% url 'editar-projeto' projeto.pk %}" method="POST">{% csrf_token %}
+
+        {{ form.as_p }}
+
+        <hr>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="submit" class="btn btn-outline-secondary">{{ botao }}</button>
+        </div>
+                    
+        </form>
+        
+
+
+    </div>
+</div>
+
+{% endblock %}

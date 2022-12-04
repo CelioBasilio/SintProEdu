@@ -1,0 +1,27 @@
+{% extends "nav.html" %}
+
+{% load static %}
+
+{% block title %}Listar Empresas{% endblock %}
+
+{% block content %}
+<h2>Lista de empresas registradas</h2>
+<p class = "lead">Preencha todos os campos obrigatórios.
+</p>
+<table>
+    <tr>
+        <th></th>
+    </tr>
+</table>
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+
+</form>
+
+{% endblock %}

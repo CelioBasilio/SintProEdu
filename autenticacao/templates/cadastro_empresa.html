@@ -1,0 +1,387 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+<link rel="stylesheet" href="{% static 'autenticacao/css/css.css' %}">
+<script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
+<script src="{% static 'js/bootstrap.min.js'%}"></script>
+{% endblock %}
+
+{% block title %}Cadastre-se{% endblock %}
+
+
+{% block 'body' %}
+
+<div class="col-md-12">
+    <div class="row">
+
+        <div class="col-md-3 sidebar">
+            <div class="logo_sidebar">
+                <h2 class="logo">
+                    <a href="{% url 'pages:home' %}">
+                        <img class="img_logo_sidebar" src="{% static 'autenticacao/img/logo_nutri_lab.png' %}">
+                    </a>
+                </h2>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+
+            <div class="area_cadastrar">
+
+                <div id="fade" class="hide">
+                    <div id="loader" class="spinner-border text-info hide" role="status">
+                        <span class="visually-hidden"></span>
+                    </div>
+                    <div id="message" class="hide">
+                        <div class="alert alert-light" role="alert">
+                        <h4>Mensagem:</h4>
+                        <p></p>
+                        <button id="close-message" type="button" class="btn btn-secondary">
+                            Fechar
+                        </button>
+                        </div>
+                    </div>
+                </div>
+
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert {{message.tags}}">
+                    {{message}}
+                </div>
+                {% endfor %}
+                {% endif %}
+                <h4 style="bottom: 40px; font-weight: bold">Já possui uma conta ?&nbsp <a href="{% url 'login' %}"
+                                                                                          class="btn btn-outline-secondary btn-lg">Entrar</a>
+                </h4><br>
+                <h2 class="titulo">Cadastre-se Empresa</h2>
+                <p class="sub-titulo">Crie sua conta</p>
+                <hr>
+                <form id="formCadastro" action="{% url 'cadastro_empresa' %}" method="POST">{% csrf_token %}
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="bold">Nome da Empresa</span>
+                            <input class="form-control input-form" name="nome" type="text"
+                                   placeholder="Digite o nome da empresa...">
+                        </div>
+                        <div class="col-md-7">
+                            <span class="bold">Nome e sobrenome do representante</span>
+                            <input class="form-control input-form" name="representante" type="text"
+                                   placeholder="Digite o nome e sobrenome do representante...">
+                        </div>
+                    </div>
+                    <br>
+                    <div id="cpf-form">
+                        <div class="row">
+                            <div class="col-5 form-floating">
+                                <span class="bold">Área de atuação</span>
+                                <select class="form-control input-form" id="atuacao" name="atuacao">
+                                    <option value="ADM">Administração</option>
+                                    <option value="AGR">Agricultura - Pecuária</option>
+                                    <option value="ALI">Alimentação</option>
+                                    <option value="ART">Artes - Arquitetura - Design</option>
+                                    <option value="VEN">Comercial e Vendas</option>
+                                    <option value="EXT">Comércio Exterior</option>
+                                    <option value="COM">Comunicação - Marketing</option>
+                                    <option value="CIV">Construção civil</option>
+                                    <option value="ECO">Ecologia - Meio ambiente</option>
+                                    <option value="EDU">Educação</option>
+                                    <option value="ELE">Elétrica - Eletrônica</option>
+                                    <option value="FIN">Financeira</option>
+                                    <option value="GEO">Geologia - Agrimensura</option>
+                                    <option value="HOT">Hotealaria - Turismo</option>
+                                    <option value="INF">Informatica - TI</option>
+                                    <option value="JUD">Jurídica</option>
+                                    <option value="MEC">Mecânica - Mecatronica</option>
+                                    <option value="QUI">Química</option>
+                                    <option value="PRO">Produção - Industrial</option>
+                                    <option value="SAU">Saúde</option>
+                                    <option value="SUP">Suprimentos</option>
+                                    <option value="TEL">Telecomunicação</option>
+                                    <option value="VET">Veterinária</option>
+                                </select>
+                            </div>    
+                            <div class="col-md-4">
+                                <span class="bold">CNPJ</span>
+                                <input 
+                                    onkeypress="$(this).mask('00.000.000/0000-00');"
+                                    autocomplete="off"
+                                    class="form-control shadow-none input-form"
+                                    id="cnpj"
+                                    name="cnpj" 
+                                    type="text" 
+                                    maxlength="18"
+                                    minlength="18" 
+                                    placeholder="Digite o CNPJ..."
+                                />
+                            </div>                                            
+                        </div>
+                    </div>
+                    <br>
+                    
+                    <div id="address-form">
+                     
+                        <div class="row md-3">
+                                              
+                            <div class="col-md-3 form-floating">
+                                <span class="bold">CEP</spam>
+                                <input
+                                onkeypress="$(this).mask('00000-000');"
+                                type="text"
+                                class="form-control shadow-none input-form"
+                                id="cep"
+                                name="cep"
+                                placeholder="Digite seu CEP"
+                                maxlength="9"
+                                minlength="9"
+                                />
+                            </div>
+
+                            <div class="col-6 form-floating">
+                                <span class="bold">Endereço</spam>
+                                <input
+                                type="text"
+                                class="form-control shadow-none input-form"
+                                id="address"
+                                name="address"
+                                placeholder="Rua"
+                                disabled
+                                data-input
+                                />
+                            </div>
+
+                            <div class="col-2 form-floating">
+                                <span class="bold">Nº</spam>
+                                <input
+                                type="text"
+                                class="form-control shadow-none input-form"
+                                id="number"
+                                name="number"
+                                placeholder="Número"
+                                disabled
+                                data-input
+                                />
+                            </div>
+
+
+                        </div>
+                        <br>
+
+                        <div class="row">
+
+                            <div class="col-4 form-floating">
+                                <span class="bold">Complemento</spam>
+                                <input
+                                type="text"
+                                class="form-control shadow-none input-form"
+                                id="complement"
+                                name="complement"
+                                placeholder="Digite o complemento"
+                                disabled
+                                data-input
+                                />
+                            </div> 
+
+                            <div class="col-5 form-floating">
+                                <span class="bold">Bairro</spam>
+                                <input
+                                type="text"
+                                class="form-control shadow-none input-form"
+                                id="neighborhood"
+                                name="neighborhood"
+                                placeholder="Bairro"
+                                disabled
+                                data-input
+                                />
+                            </div>
+
+                        
+
+                        </div>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-4 form-floating">
+                                <span class="bold">Cidade</spam>
+                                <input
+                                type="text"
+                                class="form-control shadow-none input-form"
+                                id="city"
+                                name="city"
+                                placeholder="Cidade"
+                                disabled
+                                data-input
+                                />
+                            </div>
+
+                            <div class="col-4 form-floating">
+                                <span class="bold">Estado</spam>
+                                <select
+                                class="form-select shadow-none input-form"
+                                id="region"
+                                name="region"
+                                disabled
+                                data-input
+                                >
+                                <option selected>Estado</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="bold">E-mail</span>
+                            <input class="form-control input-form" name="email" id="email" type="text"
+                            placeholder="Digite seu E-mail...">
+                        </div>
+                        <div class="col-md-6">
+                            <span class="bold">Confirma e-mail</span>
+                            <input class="form-control input-form" name="confirma_email" type="text"
+                            placeholder="Digite seu E-mail novamente...">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="bold">Senha</span>
+                            <input class="form-control input-form" name="senha" id="senha" type="password"
+                                placeholder="Digite sua senha...">
+                        </div>
+                        <div class="col-md-4">
+                            <span class="bold">Confirmar senha</span>
+                            <input class="form-control input-form" name="confirmar_senha" type="password"
+                                placeholder="Confirme sua senha...">
+                        </div>
+                    </div>
+
+                
+                   
+                    
+
+                    <button class="btn-first margembtn">Registrar</button>
+                    
+                    
+                </form>
+
+            </div>
+        </div>
+
+        <div class="col-1">
+        <br>
+            <img class="rounded float-right" width="350%" src="{% static 'autenticacao/img/empresa.gif' %}">
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/jquery-3.6.1.min.js'%}"></script><!-- jquery tem que ser o primeiro -->
+
+
+<script src="{% static 'js/jquery.mask.min.js'%}"></script>
+
+
+
+
+<script src="{% static 'js/cep.js' %}" defer></script>
+<script src="{% static 'js/universidade.js' %}" defer></script>
+<script src="{% static 'js/jquery.validate.min.js'%}"></script>
+<script src="{% static 'js/additional-methods.js'%}"></script>
+<script src="{% static 'js/messages_pt_BR.js'%}"></script>
+<script>
+    $(document).ready(function(){
+        $("#formCadastro").validate({
+            rules:{
+                nome:{
+                    required: true,
+                    minlength: 3,
+                    maxlength:50
+                },
+                representante:{
+                    required: true,
+                    minlength: 3,
+                    maxlength:50
+                },
+                cnpj:{
+                    required:true,
+                    cnpjBR: true
+                },
+                email:{
+                    required:true,
+                    email: true
+                },
+                confirma_email:{
+                    required: true,
+                    equalTo: '#email'
+                },
+                senha:{
+                    required:true,
+                },
+                confirmar_senha:{
+                    required: true,
+                    equalTo: '#senha'
+                },
+                cep:{
+                    required:true
+                },
+                address:{
+                    required:true
+                },
+                neighborhood:{
+                    required:true
+                },
+                city:{
+                    required:true
+                },
+                region:{
+                    required:true
+                },
+                estado:{
+                    required:true
+                },
+                atuacao:{
+                    required:true
+                },
+                number:{
+                    maxlength:5
+                },
+                complement:{
+                    maxlength:50
+                }
+                
+            }
+        })
+
+    })
+</script>
+{% endblock %}

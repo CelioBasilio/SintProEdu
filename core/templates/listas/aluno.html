@@ -1,0 +1,23 @@
+{% extends "nav.html" %}
+
+{% load static %}
+
+{% block title %}Listar Aluno{% endblock %}
+
+{% block content %}
+<h3>Lista de alunos registrados</h3>
+<p class = "lead">Preencha todos os campos obrigatórios.
+</p>
+
+<br>
+<form action="" method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+
+</form>
+
+{% endblock %}

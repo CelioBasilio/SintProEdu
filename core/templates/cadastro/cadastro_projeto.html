@@ -1,0 +1,119 @@
+{% extends "nav.html" %}
+
+{% load static %}
+
+{% block 'head2' %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock%}
+
+{% block title %}Listar Projetos{% endblock %}
+
+{% block content %}                
+
+<div class="row col-12">
+
+    <div class="fundo col-md-2">
+            
+      <a href="{% url 'listar-mensagem' %}">
+        <img class="iconmensagem" src="{% static 'img/mensagem.png' %}">
+      </a>
+      <a href="{% url 'listar-projeto' %}">
+        <img class="iconprojeto" src="{% static 'img/projeto.png' %}">
+      </a>
+
+    </div>
+
+    <div class="col-8 areaprojeto">
+
+        <div class="container-fluid">
+        <h2 class="textcenter">Novo projeto</h2>
+        </div>
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert {{message.tags}}">
+            {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
+        <br>
+        <div class= "lead col-md-8 mx-auto">
+        Preencha todos os campos.
+        </div>
+
+        
+
+                             
+                <form class="formulario" action="{% url 'cadastrar-projeto' %}" method="POST">{% csrf_token %}
+    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="bold">Titulo do Pojeto</span>
+                            <input class="form-control input-form" name="titulo" id="titulo" type="text"
+                                   placeholder="Digite o Titulo...">
+                        </div>
+                    </div>
+                    <br>
+    
+                    <div class="row">
+                        
+                        <div class="col-4">
+                            <span class="bold">Área de atuação ligada ao projeto</span>
+                            <select class="form-control textcenter input-form" name="atuacao" id="atuacao" placeholder="Digite o Titulo...">
+                                <option value="" disabled selected>Projeto destinado a que área...</option>
+                                <option value="ADM">Administração</option>
+                                <option value="AGR">Agricultura - Pecuária</option>
+                                <option value="ALI">Alimentação</option>
+                                <option value="ART">Artes - Arquitetura - Design</option>
+                                <option value="VEN">Comercial e Vendas</option>
+                                <option value="EXT">Comércio Exterior</option>
+                                <option value="COM">Comunicação - Marketing</option>
+                                <option value="CIV">Construção civil</option>
+                                <option value="ECO">Ecologia - Meio ambiente</option>
+                                <option value="EDU">Educação</option>
+                                <option value="ELE">Elétrica - Eletrônica</option>
+                                <option value="FIN">Financeira</option>
+                                <option value="GEO">Geologia - Agrimensura</option>
+                                <option value="HOT">Hotealaria - Turismo</option>
+                                <option value="INF">Informatica - TI</option>
+                                <option value="JUD">Jurídica</option>
+                                <option value="MEC">Mecânica - Mecatronica</option>
+                                <option value="QUI">Química</option>
+                                <option value="PRO">Produção - Industrial</option>
+                                <option value="SAU">Saúde</option>
+                                <option value="SUP">Suprimentos</option>
+                                <option value="TEL">Telecomunicação</option>
+                                <option value="VET">Veterinária</option>
+                            </select>
+                        
+                        </div>
+    
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <span class="bold">Descrição do projeto</span>
+                            <textarea class="form-control input-form" name="descricao" id="descricao" type="text" rows="5"
+                                   placeholder="Descreva em detalhes sobre o projeto que gostaria realizar..."></textarea>
+                        </div>
+                    
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="bold">Data de conclusão</span>
+                            <input class="form-control input-form" name="datalimite" id="datalimite" type="date">
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="submit" class="btn btn-outline-secondary">Cadastrar Projeto</button>
+                    </div>
+
+
+                </form>
+    </div>
+</div>
+
+
+
+{% endblock %}

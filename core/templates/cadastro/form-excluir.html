@@ -1,59 +1,63 @@
-{% extends "base.html" %}
+{% extends "nav.html" %}
 
 {% load static %}
 
-{% block title %}Cadastro Empresa{% endblock %}
+{% block 'head2' %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock%}
+
+{% block title %}{{ titulo }}{% endblock %}
 
 {% block content %}
-<div class="row ">
-    {% if user.groups.all.0.name == "GrupoAluno" %}
-    <div class="col-2 navbar-expand-md bg-secondary fixed-left">
-           <ul class="nav flex-column">
+<div class="row col-12">
 
-                <li class="nav-item">
-                     <a class="nav-link active" aria-current="page" href="{% url 'atualiza-aluno' %}">Editar Cadastro</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'listar-mensagem' %}">Minhas Mensagens</a>
-                </li>
-           </ul>
+    <div class="fundo col-md-2">
+            
+      <a href="{% url 'listar-mensagem' %}">
+        <img class="iconmensagem" src="{% static 'img/mensagem.png' %}">
+      </a>
+      <a href="{% url 'listar-projeto' %}">
+        <img class="iconprojeto" src="{% static 'img/projeto.png' %}">
+      </a>
+
     </div>
-    {% endif %}
-    {% if user.groups.all.0.name == "GrupoEmpresa" %}
-    <div class="col-2 navbar-expand-md bg-secondary fixed-left">
-    <ul class="nav flex-column">
 
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="{% url 'atualiza-empresa' %}">Editar Cadastro</a>
-  </li>
-         <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="{% url 'listar-mensagem' %}">Minhas Mensagens</a>
-  </li>
-</ul>
+    <div class="areaprojeto col-5">
+        <h2 class="textcenter">{{titulo}}</h2>
+        <br>
+        <p class = "lead">
+            Confirme para excluir o registro definitivamente.
+        </p>
+        <hr>
+        <br>
+        <form action="" method="post">{% csrf_token %}
+            <p>
+                Deseja excluir: {{ projeto.titulo }}
+            </p>
+                  <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1">{{ projeto.titulo }}</h5>
+                      <small class="text-muted">Postado dia {{ projeto.dataInicio }}</small>
+                    </div>
+                    <br>
+                    <p class="mb-1">{{ projeto.descreva }}</p>
+                    <br>
+                    <small class="text-muted">{%if  projeto.status  == 'P' %}
+                            Recrutando alunos
+                            {% endif %}
+                            {%if  projeto.status  == 'F' %}
+                            Solução em andamento
+                            {% endif %}
+                            {%if  projeto.status  == 'E' %}
+                            Finalizado
+                            {% endif %}</small>
+                    
+                    <small class="text-muted float-right">Finaliza em {{ projeto.dataLimite }}</small>
+                    </a>
+                    <br>
+            <a href="{% url 'listar-projeto' %}" class="btn btn-primary " title="Editar">Voltar</a>
+            <button type="submit" class="btn btn-danger float-right">Excluir</button>
+        </form>
     </div>
-{% endif %}
-
-<div class="col-8">
-<h2>Excluir Registros</h2>
-<p class = "lead">
-    Confirme para excluir o registro definitivamente.
-</p>
-<hr>
-<br>
-<form action="" method="post">
-    <p>
-        Deseja excluir o registro: {{ object }}?
-    </p>
-    {% csrf_token %}
-
-    {{ form.as_p }}
-    <a href="{% url 'listar-projeto' %}" class="btn btn-primary " title="Editar">Voltar</a>
-    <button type="submit" class="btn btn-danger">Excluir</button>
-
-
-
-
-</form>
-</div>
 </div>
 {% endblock %}

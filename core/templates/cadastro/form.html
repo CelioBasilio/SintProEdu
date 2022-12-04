@@ -1,41 +1,60 @@
-{% extends "base.html" %}
+{% extends "nav.html" %}
 
 {% load static %}
 
-{% load crispy_forms_tags %}
+{% block 'head2' %}
+    <link href="{% static '/css/styles.css' %}" rel="stylesheet">
+{% endblock%}
 
-{% block title %}Cadastro Projeto{% endblock %}
+
+{% block title %}{{ titulo }}{% endblock %}
 
 {% block content %}
-<div>
-    <div class="container-fluid">
-        <h2 class="textcenter">{{titulo}}</h2>
-    </div>
-    <br>
-    <div class= "lead col-md-8 mx-auto">
-        Preencha todos os campos obrigatórios.
-    </div>
+<div class="row col-12">
 
-    <br>
-    <div class="container-fluid">
-        <div class="col-md-6 mx-auto">
-              <form action="" method="post">
-                {% csrf_token %}
+    <div class="fundo col-md-2">
+            
+      <a href="{% url 'listar-mensagem' %}">
+        <img class="iconmensagem" src="{% static 'img/mensagem.png' %}">
+      </a>
+      <a href="{% url 'listar-projeto' %}">
+        <img class="iconprojeto" src="{% static 'img/projeto.png' %}">
+      </a>
 
-                {{ form|crispy }}
+    </div>  
 
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                   <button type="submit" class="btn btn-primary">{{botao}}</button>
-                </div>
-
-
-                  <hr>
-
-
-              </form>
+    <div class="areaprojeto col-6">
+        
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert {{message.tags}}">
+            {{message}}
         </div>
+        {% endfor %}
+        {% endif %}
+        <h2 class="textcenter">{{ titulo }}</h2>
+        
+
+        <br>
+        <div class= "lead">
+        Preencha todos os campos.
+        <hr>
+        </div>
+        
+        <form class="formulario" action="{% url 'cadastrar-projeto' %}" method="POST">{% csrf_token %}
+
+        {{ form.as_p }}
+
+        <hr>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="submit" class="btn btn-outline-secondary">{{ botao }}</button>
+        </div>
+                    
+        </form>
+        
+
+
     </div>
 </div>
-    </div>
 
 {% endblock %}

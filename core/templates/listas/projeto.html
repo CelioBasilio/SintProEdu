@@ -1,0 +1,123 @@
+{% extends "nav.html" %}
+
+{% load static %}
+
+{% block 'head2' %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock%}
+
+{% block title %}Listar Projetos{% endblock %}
+
+{% block content %}
+
+<div class="row col-12">
+
+    <div class="fundo col-md-2">
+            
+      <a href="{% url 'listar-mensagem' %}">
+        <img class="iconmensagem" src="{% static 'img/mensagem.png' %}">
+      </a>
+      <a href="{% url 'listar-projeto' %}">
+        <img class="iconprojeto" src="{% static 'img/projeto.png' %}">
+      </a>
+
+    </div>
+
+    
+
+    <div class="col-6 areaprojeto">
+    <br>
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert {{message.tags}}">
+            {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+          {% if user.groups.all.0.name == "GrupoEmpresa" %}
+          <h2 class="textcenter">Projetos registrados da empresa {{ projeto.empresa.nome }}</h2><br>
+          <p class = "lead">Meus projetos</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a class="btn btn-outline-secondary direita" href="{% url 'cadastrar-projeto' %}">
+                Adicionar projeto
+            </a>
+            </div>
+            <hr>
+          {% endif %}
+                    {% if user.groups.all.0.name == "GrupoAluno" %}
+          <h2 class="textcenter">Lista de projetos cadastrados</h2>
+          <p class = "lead textcenter">Envie uma mensagem para empresa caso tenha interesse no projeto</p>
+            <hr>
+          {% endif %}
+          
+                 {% for projeto in object_list %}
+                <table class="tabela list-group">
+
+                  <a href="{% url 'projeto' projeto.pk %}" class="list-group-item list-group-item-action list-group-item-secondary">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1">{{ projeto.titulo }}</h5>
+                      <small class="text-muted">Postado dia {{ projeto.dataInicio }}</small>
+                    </div>
+                    <br>
+                    <p class="mb-1">{{ projeto.descreva }}</p>
+                    <br>
+                    <small class="text-muted">{%if  projeto.status  == 'P' %}
+                            Recrutando alunos
+                            {% endif %}
+                            {%if  projeto.status  == 'F' %}
+                            Solução em andamento
+                            {% endif %}
+                            {%if  projeto.status  == 'E' %}
+                            Finalizado
+                            {% endif %}</small>
+                    
+                    <small class="text-muted float-right">Finaliza em {{ projeto.dataLimite }}</small>
+                    
+                    </a>
+
+                 
+                 
+
+                    {% if user.groups.all.0.name == "GrupoEmpresa" %}
+                    
+
+                    <div class="btn-group d-grid gap-2 d-md-flex justify-content-md-end" role="group" aria-label="Basic outlined example">
+                      <a href="{% url 'editar-projeto' projeto.pk %}" class="btn btn-outline-info btn-sm">Editar</a>
+                      <small class="btn btn-success btn-sm">{%if  projeto.status  == 'P' %}
+                            Recrutando alunos
+                            {% endif %}
+                            {%if  projeto.status  == 'F' %}
+                            Solução em andamento
+                            {% endif %}
+                            {%if  projeto.status  == 'E' %}
+                            Finalizado
+                            {% endif %}</small>
+                      <a href="{% url 'excluir-projeto' projeto.pk %}" type="button" class="btn btn-outline-danger btn-sm">Excluir</a>
+                    </div>
+                    {% endif %}
+
+                    
+
+                    {% if user.groups.all.0.name == "GrupoAluno" %}
+
+                    <div class="btn-group d-grid gap-2 d-md-flex justify-content-md-end" role="group" aria-label="Basic outlined example">
+                            <a href="{% url 'enviar-mensagem' projeto.pk %}" class="btn btn-outline-primary btn-sm" title="Mensagem">Enviar mensagem</a>
+                        
+                    </div>
+
+                    {% endif %}
+                    
+                    {% empty %}
+                     <tr>
+                    <td colspan="4">Nenhum projeto Ativo.</td>
+                    </tr>
+                 
+                </table> 
+                {% endfor %}
+                
+            
+        </div>
+
+</div>
+{% endblock %}

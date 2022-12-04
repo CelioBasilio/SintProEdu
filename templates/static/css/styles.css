@@ -1,0 +1,145 @@
+body {
+ min-height: 100vh;
+ width: 100%;
+ }
+
+label{
+  font-weight: bold;
+  color:#4F4F4F;
+}
+
+.input-form{
+  margin-top: 15px;
+  width: 100%;
+  padding: 5px;
+  outline: 0;
+}
+
+.input-form:focus{
+  border: 2px solid #4F4F4F !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+.tabela{
+  padding-bottom: 5%;
+}
+
+.areaprojeto{
+ margin-left: 23%;
+ margin-top: 2%;
+ margin-bottom: 2%;
+}
+
+.botaobar{
+  position: absolute;
+  right: 0px;
+}
+
+.margem{
+  padding-top: 10%;
+}
+
+.margem5{
+  padding-top: 5%;
+}
+
+.iconmensagem{
+  width: 50%;
+  margin-top: 50%;
+  margin-left: 25%;
+}
+.iconprojeto{
+  width: 50%;
+  margin-top: 50%;
+  margin-left: 25%;
+}
+
+.imgnavbar{
+  position: absolute;
+  left: 0px;
+  top: 0%;
+  width: 300px;
+
+}
+
+
+.container-fluid {
+    position: relative;
+    padding: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.right {
+  position: absolute;
+  right: 0px;
+  width: 300px;
+  padding: 10px;
+}
+.layout-right {
+  position: absolute;
+  right: 0px;
+  width: 1000px;
+  padding: 10px;
+}
+
+.left {
+  position: absolute;
+  left: 0px;
+  width: 300px;
+  padding: 10px;
+}
+
+.div-button{
+  margin-bottom: 6.1%;
+}
+
+.footer {
+  color : #6c757d;
+  text-align : center;
+  padding: 30px;
+  margin-bottom: 0%;
+
+}
+
+.top-title{
+position: absolute;
+width: 300px;
+right: 500px;
+top: 130px;
+}
+
+.form{
+    top: 135px;
+    position: relative;
+}
+
+.sobre{
+position: absolute;
+    top: 120px;
+    width: 1000px;
+}
+
+.textcenter {
+text-align : center;
+}
+
+h2{
+padding-top: 60px;
+}
+
+.fundo{
+  position: fixed;
+  background-color: #4F4F4F;
+  min-height: 100vh;
+}
+
+.alunogif{
+  width: 100%;
+
+}
+.empresagif{
+  width: 100%;
+}

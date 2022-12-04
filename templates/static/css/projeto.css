@@ -1,0 +1,41 @@
+.titulo{
+
+    color: #4F4F4F;
+    font-weight: bold;
+
+}
+
+.paragrafo{
+    font-size: 25px;
+}
+
+.btn-orange{
+
+    background-color: #ED8554;
+    color: white;
+}
+
+label{
+    font-weight: bold;
+}
+
+.box-vagas{
+
+    width: 400px;
+    margin-top: 60px;
+    background-color: #adadad;
+}
+
+.header-vagas{
+    background-color: #4F4F4F;
+    padding: 15px;
+    color: white
+}
+
+.body-vagas{
+    padding: 15px;
+}
+
+.paragrafo-orange{
+    color: #ED8554;
+}

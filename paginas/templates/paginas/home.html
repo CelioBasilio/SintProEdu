@@ -1,22 +1,22 @@
-{% extends 'base.html' %}
+{% extends 'nav.html' %}
 
 
 {% load static %}
+
 {% block title %}Pagina inicial{% endblock %}
-{% block content %}
-<html lang="en">
-<head>
+
+
+{% block 'head2' %}
    
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
     <link rel="stylesheet" href="{% static 'css/slider.css' %}">
-    <title>Document</title>
-</head>
-<body>
-    <main >
-        
+    
+    
+{% endblock %}
+
+{% block content %}
+<div class="col-12 totalarea">
+    <div class= "row margem">
         <div class="slider">
             <div class="slides">
                 <input type="radio" name="radio-btn" id="radio1">
@@ -60,7 +60,9 @@
             
             
         </div>
-         <div class="div-button" style="display:flex; justify-content:center ; margin-top: 3rem;">
+    </div>
+
+        <div class="row div-button" style="display:flex; justify-content:center ; margin-top: 3rem;">
             <a class="nav-link" 
             style="
             text-align: center;
@@ -74,12 +76,21 @@
 
             href="{% url 'pages:sobre' %}">Saiba Mais</a>
         </div>
-    </main>
+    
+</div>
 
-</body>
 
 <script src= "{% static '/js/slider.js' %}"></script>
 
 
-</html>
+
+
+
+
+{% endblock %}
+
+{% block 'footer' %}
+    <div class="footer footer-dark bg-dark fluid-down">
+        <p>Unindo alunos e empresas para soluções reais</p>
+    </div>
 {% endblock %}

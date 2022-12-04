@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block 'head' %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="{% static 'autenticacao/css/css.css' %}">
+{% endblock %}
+
+{% block title %}Login{% endblock %}
+
+{% block 'body' %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 sidebar">
+            <div class="logo_sidebar">
+                <h2 class="logo"><a href="{% url 'cadastro' %}"><img class="img_logo_sidebar" src="{% static 'autenticacao/img/logo_nutri_lab.png' %}"></a>
+                </h2>
+                <h2 class="logo">
+                    <img class="img_logo_sidebar" src="{% static 'autenticacao/img/fundo_background.png' %}">
+                </h2>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="area_cadastrar">
+                <h4 style="bottom: 30px; font-weight: bold">Não tem uma conta ?&nbsp <a href="{% url 'cadastro' %}"
+                        class="btn btn-outline-secondary btn-lg">Registre-se</a></h4><br>
+                {% if messages %}
+                <br>
+                {% for message in messages %}
+                <div class="alert {{message.tags}}">
+                    {{message}}
+                </div>
+                {% endfor %}
+                {% endif %}
+                <h2 class="titulo">Bem vindo novamente</h2>
+                <p class="sub-titulo">Entre com sua conta</p>
+                <hr>
+                <form action="{% url 'login'%}" method="POST">{% csrf_token %}
+                    <span class="bold">E-mail</span>
+                    <input class="form-control input-form col-md-6" name="email" type="text" placeholder="Digite seu E-mail...">
+                    <br>
+                    <span class="bold">Senha</span>
+                    <input class="form-control input-form col-md-4" name="senha" type="password"
+                           placeholder="Digite sua senha...">
+                    <br>
+                    <button type="submit" class="btn-first">Entrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

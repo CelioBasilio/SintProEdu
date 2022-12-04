@@ -1,0 +1,83 @@
+{% extends "nav.html" %}
+
+{% load static %}
+
+{% block 'head2' %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock%}
+
+{% block title %}Mensagens{% endblock %}
+
+{% block content %}
+<div class="row col-12">
+
+    <div class="fundo col-md-2">
+            
+      <a href="{% url 'listar-mensagem' %}">
+        <img class="iconmensagem" src="{% static 'img/mensagem.png' %}">
+      </a>
+      <a href="{% url 'listar-projeto' %}">
+        <img class="iconprojeto" src="{% static 'img/projeto.png' %}">
+      </a>
+
+    </div>  
+
+    <div class="col-6 areaprojeto">
+
+          <h2 class="textcenter">Mensagens</h2>
+          <p class = "lead">Minhas mensagens</p>
+            <hr>
+
+            {% for mensagens in object_list %}
+            <table class="tabela list-group">
+
+            
+
+                <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1">{{ mensagens.projeto.titulo }}</h5>
+                      <small class="text-muted">Data de envio: {{ mensagens.dataEnvio }}</small>
+                    </div>
+                    <br>
+                    <p class="mb-1">{{ mensagens.mensagem }}</p>
+                    <br>
+                    <small class="text-muted">{%if  mensagens.statusMensagem  == 'P' %}
+                            Mensagem Enviada
+                            {% endif %}
+                            {%if  mensagens.statusMensagem  == 'V' %}
+                            Mensagem Visualizada
+                            {% endif %}</small>
+                    
+                    <small class="text-muted float-right">Email usado: {{ mensagens.email_de }}</small>
+                    
+                    </a>
+
+
+                    {% if user.groups.all.0.name == "GrupoEmpresa" %}
+                    <tr>
+
+                        <div class="btn-group d-grid gap-2 d-md-flex justify-content-md-end" role="group" aria-label="Basic outlined example">
+                            <a href="#" class="btn btn-warning btn-sm" title="Editar">Editar</a>
+                            <a href="#" class="btn btn-danger btn-sm" title="Excluir">Excluir</a>
+                        </div>
+                    {% endif %}
+
+                    {% if user.groups.all.0.name == "GrupoAluno" %}
+                        <div class="btn-group d-grid gap-2 d-md-flex justify-content-md-end" role="group" aria-label="Basic outlined example">
+                            <a href="#" class="btn btn-primary btn-sm" title="Mensagem">Enviar mensagem</a>
+                        </div>
+                    {% endif %}
+
+
+
+
+                    {% empty %}
+                     <tr>
+                    <td colspan="4">Nenhuma Mensagem.</td>
+                    </tr>
+                 {% endfor %}
+
+            </table>
+    </div>
+</div>
+{% endblock %}

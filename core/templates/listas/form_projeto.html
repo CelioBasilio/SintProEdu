@@ -1,0 +1,79 @@
+{% extends "nav.html" %}
+
+{% load static %}
+
+{% block 'head2' %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock%}
+
+{% block title %}{{ titulo }}{% endblock %}
+
+{% block content %}
+<div class="row col-12">
+
+    <div class="fundo col-md-2">
+            
+      <a href="{% url 'listar-mensagem' %}">
+        <img class="iconmensagem" src="{% static 'img/mensagem.png' %}">
+      </a>
+      <a href="{% url 'listar-projeto' %}">
+        <img class="iconprojeto" src="{% static 'img/projeto.png' %}">
+      </a>
+
+    </div>
+
+    <div class=" col-6 areaprojeto">
+        <h2 class="textcenter">Dados do projeto - {{ projeto.titulo }}</h2>
+        <br>
+        <p class = "lead">
+            O status desse projeto é " {%if  projeto.status  == 'P' %}
+                            Recrutando alunos
+                            {% endif %}
+                            {%if  projeto.status  == 'F' %}
+                            Solução em andamento
+                            {% endif %}
+                            {%if  projeto.status  == 'E' %}
+                            Finalizado
+                            {% endif %}"
+        </p>
+        <hr>
+        <br>
+        <form action="" method="">{% csrf_token %}
+            <p>
+                Criado por {{ user.representate }}
+            </p>
+                  <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1">{{ projeto.titulo }}</h5>
+                      <small class="text-muted">Postado dia {{ projeto.dataInicio }}</small>
+                    </div>
+                    <br>
+                    <p class="mb-1">{{ projeto.descreva }}</p>
+                    <br>
+                    <small class="text-muted">{%if  projeto.status  == 'P' %}
+                            Recrutando alunos
+                            {% endif %}
+                            {%if  projeto.status  == 'F' %}
+                            Solução em andamento
+                            {% endif %}
+                            {%if  projeto.status  == 'E' %}
+                            Finalizado
+                            {% endif %}</small>
+                    
+                    <small class="text-muted float-right">Finaliza em {{ projeto.dataLimite }}</small>
+                    </a>
+                    <br>
+            {% if user.groups.all.0.name == "GrupoEmpresa" %}
+            <a href="{% url 'listar-projeto' %}" class="btn btn-outline-secondary">Voltar</a>
+            <a href="{% url 'editar-projeto' projeto.id %}" class="btn btn-outline-info float-right">Editar</a>
+            {% endif %}
+
+            {% if user.groups.all.0.name == "GrupoAluno" %}
+            <a href="{% url 'listar-proalu' %}" class="btn btn-outline-secondary">Voltar</a>
+            <a href="{% url 'enviar-mensagem' projeto.id %}" class="btn btn-outline-info float-right">Enviar mensagem</a>
+            {% endif %}
+
+        </form>
+    </div>
+</div>
+{% endblock %}

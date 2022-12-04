@@ -1,48 +1,58 @@
-{% extends "base.html" %}
+{% extends "nav.html" %}
 
 {% load static %}
 
-{% load crispy_forms_tags %}
+{% block 'head2' %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock%}
 
 {% block title %}Enviar Mensagem{% endblock %}
 
 {% block content %}
-<div>
-    <div class="container-fluid">
+<div class="row col-12">
+
+    <div class="fundo col-md-2">
+            
+      <a href="{% url 'listar-mensagem' %}">
+        <img class="iconmensagem" src="{% static 'img/mensagem.png' %}">
+      </a>
+      <a href="{% url 'listar-projeto' %}">
+        <img class="iconprojeto" src="{% static 'img/projeto.png' %}">
+      </a>
+
+    </div>
+
+    
+
+    <div class="areaprojeto col-6">
         <h2 class="textcenter">{{titulo}}</h2>
-    </div>
-    <br>
-    {% if user.groups.all.0.name == "GrupoAluno" %}
-    <div class= "lead col-md-8 mx-auto">
-        Sua mensagem será encaminhada para a empresa.
-    </div>
-    {% endif %}
-    {% if user.groups.all.0.name == "GrupoEmpresa" %}
-    <div class= "lead col-md-8 mx-auto">
-        Sua mensagem será encaminhada para o aluno.
-    </div>
-    {% endif %}
+        
+        <br>
+        {% if user.groups.all.0.name == "GrupoAluno" %}
+        <div class= "lead col-md-8 mx-auto">
+            Sua mensagem será encaminhada à empresa.
+        </div>
+        {% endif %}
+        {% if user.groups.all.0.name == "GrupoEmpresa" %}
+        <div class= "lead col-md-8 mx-auto">
+            Sua mensagem será encaminhada ao aluno.
+        </div>
+        {% endif %}
+    
+        <br>
+        <div class="mx-auto">
+                <form action="" method="post">
+                  {% csrf_token %}
 
-    <br>
-    <div class="container-fluid">
-        <div class="col-md-6 mx-auto">
-              <form action="" method="post">
-                {% csrf_token %}
-
-                {{ form|crispy }}
+                  {{ form.as_p }}
+                <hr>
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                   <button type="submit" class="btn btn-primary">{{botao}}</button>
+                    <button type="submit" class="btn btn-outline-primary">{{botao}}</button>
                 </div>
-
-
-                  <hr>
-
-
-              </form>
+                </form>
         </div>
     </div>
 </div>
-    </div>
 
 {% endblock %}
