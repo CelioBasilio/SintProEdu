@@ -16,7 +16,12 @@
       <a href="{% url 'listar-mensagem' %}">
         <img class="iconmensagem" src="{% static 'img/mensagem.png' %}">
       </a>
+      {% if user.groups.all.0.name == "GrupoEmpresa" %}
       <a href="{% url 'listar-projeto' %}">
+      {% endif %}
+      {% if user.groups.all.0.name == "GrupoAluno" %}
+      <a href="{% url 'listar-proalu' %}">
+      {% endif %}
         <img class="iconprojeto" src="{% static 'img/projeto.png' %}">
       </a>
 
@@ -35,7 +40,7 @@
 
                 <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">
                     <div class="d-flex w-100 justify-content-between">
-                      <h5 class="mb-1">{{ mensagens.projeto.titulo }}</h5>
+                      <h5 class="mb-1">{{ mensagens.projeto_titulo }}</h5>
                       <small class="text-muted">Data de envio: {{ mensagens.dataEnvio }}</small>
                     </div>
                     <br>
@@ -64,7 +69,7 @@
 
                     {% if user.groups.all.0.name == "GrupoAluno" %}
                         <div class="btn-group d-grid gap-2 d-md-flex justify-content-md-end" role="group" aria-label="Basic outlined example">
-                            <a href="#" class="btn btn-primary btn-sm" title="Mensagem">Enviar mensagem</a>
+                            <a href="#" class="btn btn-primary btn-sm" title="Mensagem">Mensagem enviada</a>
                         </div>
                     {% endif %}
 

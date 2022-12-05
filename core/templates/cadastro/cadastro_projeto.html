@@ -8,8 +8,9 @@
 
 {% block title %}Listar Projetos{% endblock %}
 
-{% block content %}                
+{% block content %}     
 
+{% if user.groups.all.0.name == "GrupoEmpresa" %}
 <div class="row col-12">
 
     <div class="fundo col-md-2">
@@ -114,6 +115,6 @@
     </div>
 </div>
 
-
+{% endif %}
 
 {% endblock %}

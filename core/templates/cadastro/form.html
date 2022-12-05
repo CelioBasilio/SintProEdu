@@ -17,7 +17,12 @@
       <a href="{% url 'listar-mensagem' %}">
         <img class="iconmensagem" src="{% static 'img/mensagem.png' %}">
       </a>
+      {% if user.groups.all.0.name == "GrupoEmpresa" %}
       <a href="{% url 'listar-projeto' %}">
+      {% endif %}
+      {% if user.groups.all.0.name == "GrupoAluno" %}
+      <a href="{% url 'listar-proalu' %}">
+      {% endif %}
         <img class="iconprojeto" src="{% static 'img/projeto.png' %}">
       </a>
 

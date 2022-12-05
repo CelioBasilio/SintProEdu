@@ -55,7 +55,7 @@ class Atuacao(models.Model):
 
 class Aluno(models.Model):
     usuario = models.ForeignKey(User, null=True, on_delete=models.CASCADE) 
-    cpf = models.CharField(max_length=14, null=True, blank=True, verbose_name='cpf')
+    cpf = models.CharField(max_length=14, null=True, unique=True, blank=True, verbose_name='cpf')
     endereco = models.ForeignKey(Endereco, on_delete=models.SET_NULL, blank=True, null=True)
     instituicao = models.ForeignKey(Universidades, on_delete=models.SET_NULL, blank=True, null=True)
     atuacao = models.ForeignKey(Atuacao, on_delete=models.SET_NULL, blank=True, null=True)
@@ -66,7 +66,7 @@ class Aluno(models.Model):
 
 class Empresa(models.Model):
     usuario = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
-    cnpj = models.CharField(max_length=18, null=True, verbose_name='cnpj')
+    cnpj = models.CharField(max_length=18, null=True, unique=True, verbose_name='cnpj')
     representante = models.CharField(max_length=50, null=True, verbose_name='representante')
     endereco = models.ForeignKey(Endereco, on_delete=models.SET_NULL, blank=True, null=True)
     atuacao = models.ForeignKey(Atuacao, on_delete=models.SET_NULL, blank=True, null=True)

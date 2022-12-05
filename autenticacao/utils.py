@@ -31,10 +31,23 @@ def password_is_valid(request, password, confirm_password):
 def email_valido(request, email, Email):
     email = Email.objects.filter(email=email)
     if email.exists():
-        messages.add_message(request, constants.ERROR, 'Usuário com esse email já cadastrado!!')
+        messages.add_message(request, constants.ERROR, 'Usuário com esse email já esta cadastrado!!')
         return False
     return True
 
+def cpf_valido(request, cpf, Aluno):
+    cpf = Aluno.objects.filter(cpf=cpf)
+    if cpf.exists():
+        messages.add_message(request, constants.ERROR, 'Aluno com esse CPF já esta cadastrado!!')
+        return False
+    return True
+
+def cnpj_valido(request, cnpj, Empresa):
+    cnpj = Empresa.objects.filter(cnpj=cnpj)
+    if cnpj.exists():
+        messages.add_message(request, constants.ERROR, 'Empresa com esse CNPJ já esta cadastrada!!')
+        return False
+    return True
 
 def nome_valido(request, username):
     username = User.objects.filter(username=username)

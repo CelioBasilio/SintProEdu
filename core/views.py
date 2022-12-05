@@ -30,6 +30,7 @@ class ProjetoCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
 
         url = super().form_valid(form)
         # Depois do super objeto criado
+        messages.add_message(self.request, constants.INFO, 'Projeto adicionado com sucesso!!!')
         return url
 
     def get_context_data(self, *args, **kwargs):
@@ -120,7 +121,7 @@ class ProjetoList(LoginRequiredMixin, ListView, GroupRequiredMixin):
 
     def get_queryset(self):
 
-        self.object_list = Projeto.objects.filter(usuario_id=self.request.user) 
+        self.object_list = Projeto.objects.filter(usuario_id=self.request.user).order_by('-id') 
 
         return self.object_list
 
@@ -148,7 +149,7 @@ class ProjetoListAluno(LoginRequiredMixin, ListView, GroupRequiredMixin):
     group_required = u'GrupoAluno'
 
     def get_queryset(self):
-      self.object_list = Projeto.objects.exclude(status='E')
+      self.object_list = Projeto.objects.exclude(status='E').order_by('-id')
 
       return self.object_list
 
@@ -169,7 +170,7 @@ class MensagensCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     form_class = MensagemForm
     template_name = 'cadastro/mensag.html'
     success_url = reverse_lazy('listar-proalu')
-    
+
 
     def form_valid(self, form):
         form.instance.usuario = self.request.user
@@ -205,7 +206,7 @@ class MensagensList(LoginRequiredMixin, ListView, GroupRequiredMixin):
 
     def get_queryset(self):
 
-            self.object_list = Mensagens.objects.filter(usuario=self.request.user)
+        self.object_list = Mensagens.objects.filter(usuario=self.request.user).order_by('-id')
 
-            return self.object_list
+        return self.object_list
 

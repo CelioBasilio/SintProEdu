@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .utils import password_is_valid, email_html, email_valido, email_username
+from .utils import password_is_valid, email_html, email_valido, email_username, cpf_valido, cnpj_valido
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib import auth
 from django.contrib.auth.models import User
@@ -61,7 +61,9 @@ def cadastro_empresa(request):
 
         if not email_valido(request, email, User):
             return redirect('/cadastro_empresa')
-
+        
+        if not cnpj_valido(request, cnpj, Empresa):
+            return redirect('/cadastro_empresa')
 
         try:
         
@@ -172,6 +174,8 @@ def cadastro_aluno(request):
         if not email_valido(request, email, User):
             return redirect('/cadastro_aluno')
 
+        if not cpf_valido(request, cpf, Aluno):
+            return redirect('/cadastro_empresa')
 
         try:
 
