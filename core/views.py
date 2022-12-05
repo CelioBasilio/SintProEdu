@@ -132,7 +132,7 @@ class ProjetoList(LoginRequiredMixin, ListView, GroupRequiredMixin):
 
 def projeto(request, id):
     projeto = get_object_or_404(Projeto, pk=id)
-    empresa = Empresa.objects.get(usuario = projeto.usuario)
+    empresa = Empresa.objects.filter(usuario = projeto.usuario)[0]
     
    
     
@@ -209,4 +209,5 @@ class MensagensList(LoginRequiredMixin, ListView, GroupRequiredMixin):
         self.object_list = Mensagens.objects.filter(usuario=self.request.user).order_by('-id')
 
         return self.object_list
+
 

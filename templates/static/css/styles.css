@@ -143,3 +143,10 @@ padding-top: 60px;
 .empresagif{
   width: 100%;
 }
+
+.textlimit{
+  max-width: 250ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

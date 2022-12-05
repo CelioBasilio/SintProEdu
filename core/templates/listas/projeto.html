@@ -25,7 +25,6 @@
       {% endif %}
         <img class="iconprojeto" src="{% static 'img/projeto.png' %}">
       </a>
-
     </div>
 
     
@@ -65,7 +64,7 @@
                       <small class="text-muted">Postado dia {{ projeto.dataInicio }}</small>
                     </div>
                     <br>
-                    <p class="mb-1">{{ projeto.descreva }}</p>
+                    <p class="mb-1 textlimit">{{ projeto.descreva }}</p>
                     <br>
                     <small class="text-muted">{%if  projeto.status  == 'P' %}
                             Recrutando alunos

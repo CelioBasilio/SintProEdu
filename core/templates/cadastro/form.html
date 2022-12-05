@@ -25,12 +25,11 @@
       {% endif %}
         <img class="iconprojeto" src="{% static 'img/projeto.png' %}">
       </a>
-
-    </div>  
+    </div>
 
     <div class="areaprojeto col-6">
         
-    {% if messages %}
+        {% if messages %}
         {% for message in messages %}
         <div class="alert {{message.tags}}">
             {{message}}

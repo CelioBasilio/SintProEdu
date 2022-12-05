@@ -261,7 +261,7 @@ def cadastro_aluno(request):
 def login(request):
     if request.method == "GET":
         if request.user.is_authenticated:
-            return redirect('/')
+            return redirect('listar-projeto')
         return render(request, 'login.html')
 
     elif request.method == "POST":
