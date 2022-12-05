@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'paginas.apps.PaginasConfig',
     'core.apps.CoreConfig',
     'api.apps.ApiConfig',
+    # ... other apps here ...
+    'django_distill',
     'rest_framework'
 ]
 
