@@ -1,0 +1,148 @@
+
+.slider{
+    margin: 0 auto;
+    width: 60%;
+    overflow: hidden;
+    border-radius: 5px;
+}
+.slides{
+    width: 400%;
+    height: 100%;
+    display: flex;
+}
+
+.slides input{
+    display: none;
+}
+
+.slide{
+    width: 25%;
+    position: relative;
+    transition: 2s;
+}
+
+.slide img{
+    width: 100%;
+    height: 100%;
+
+}
+
+.manual-navigation {
+    position: absolute;
+    bottom:70px; /* Posiciona na parte inferior do slider */
+    width: 60%; /* Faz com que a navegação ocupe toda a largura do slider */
+    display: flex;
+    justify-content: center;
+    z-index: 10; /* Garante que as bolinhas fiquem acima das imagens */
+}
+
+
+.manual-btn{
+    border: 2px solid gray;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.manual-btn:not(:last-child){
+    margin-right: 40px;
+}
+.manual-btn:hover{
+    background-color:gray;
+}
+
+#radio1:checked ~ .first{
+    margin-left: 0;
+}
+
+#radio2:checked ~ .first{
+    margin-left: -25%;
+}
+
+#radio3:checked ~ .first{
+    margin-left: -50%;
+}
+
+#radio4:checked ~ .first{
+    margin-left: -75%;
+}
+
+.navigation-auto div{
+    border: 2px solid #20a6ff;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+
+}
+
+.navigation-auto{
+    position: absolute;
+    bottom:78px; /* Posiciona na parte inferior do slider */
+    width: 60%; /* Faz com que a navegação ocupe toda a largura do slider */
+    display: flex;
+    justify-content: center;
+    z-index: 10; /* Garante que as bolinhas fiquem acima das imagens */
+}
+
+.navigation-auto div:not(:last-child){
+    margin-right: 40px;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn1{
+    background-color: gray;
+}
+
+#radio2:checked ~ .navigation-auto .auto-btn2{
+    background-color: gray;
+}
+
+#radio3:checked ~ .navigation-auto .auto-btn3{
+    background-color: gray;
+}
+
+#radio4:checked ~ .navigation-auto .auto-btn4{
+    background-color: gray;
+}
+
+.div-button {
+    display: flex;
+    justify-content: center; /* Centraliza os botões */
+    width: 60%; /* A mesma largura definida para o slider */
+    margin: 0px auto 60px; /* Margem superior reduzida e margem inferior aumentada */
+}
+
+.div-button .button-link {
+    margin: 0; /* Remove margens individuais */
+    text-align: center;
+    background-color: #343a40;
+    color: #ffffff;
+    border: none;
+    padding: 15px 30px; /* Aumenta o tamanho dos botões */
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex: 1; /* Faz com que cada botão tenha a mesma largura */
+}
+
+.div-button .button-link + .button-link {
+    margin-left: -5px; /* Remove espaçamento visual entre os botões */
+    border-radius: 0; /* Remove bordas arredondadas entre os botões */
+}
+
+.div-button .button-link:first-child {
+    border-top-right-radius: 0; /* Apenas o botão inicial mantém arredondamento no canto superior esquerdo */
+    border-bottom-right-radius: 0; /* Apenas o botão inicial mantém arredondamento no canto inferior esquerdo */
+}
+
+.div-button .button-link:last-child {
+    border-top-left-radius: 0; /* Apenas o botão final mantém arredondamento no canto superior direito */
+    border-bottom-left-radius: 0; /* Apenas o botão final mantém arredondamento no canto inferior direito */
+}
+
+.div-button .button-link:hover {
+    background-color: #133f61; /* Cor ao passar o mouse */
+}
+

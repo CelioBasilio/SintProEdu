@@ -1,22 +1,15 @@
 {% extends 'nav.html' %}
 
-
 {% load static %}
 
 {% block title %}Pagina inicial{% endblock %}
 
-
 {% block 'head2' %}
-   
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
-    <link rel="stylesheet" href="{% static 'css/slider.css' %}">
-
-    
+    <link rel="stylesheet" href="{% static 'css/slide.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="col-12 totalarea">
-    <div class= "row margem">
+<div class="container-fluid">
         <div class="slider">
             <div class="slides">
                 <input type="radio" name="radio-btn" id="radio1">
@@ -24,19 +17,19 @@
                 <input type="radio" name="radio-btn" id="radio3">
                 <input type="radio" name="radio-btn" id="radio4">
 
-                <div class="slide first" >
+                <div class="slide first">
                     <img src="{% static '/img/img01.jpg'%}" alt="">
                 </div>
 
-                <div class="slide " >
+                <div class="slide">
                     <img src="{% static '/img/img2.jpg'%}" alt="">
                 </div>
 
-                <div class="slide " >
+                <div class="slide">
                     <img src="{% static '/img/img3.jpg'%}" alt="">
                 </div>
 
-                <div class="slide " >
+                <div class="slide">
                     <img src="{% static '/img/img4.jpg'%}" alt="">
                 </div>
 
@@ -55,44 +48,32 @@
                     <label for="radio3" class="manual-btn"></label>
                     <label for="radio4" class="manual-btn"></label>
                 </div>
-                
             </div>
-            
-            
         </div>
+
+
+    <div class="row div-button btn-group btn-group-toggle">
+        <a class="nav-link button-link" href="{% url 'login' %}">Login</a>
+        <a class="nav-link button-link" href="{% url 'cadastro' %}">Cadastro</a>
+        <a class="nav-link button-link" href="{% url 'pages:sobre' %}">Saiba Mais</a>
     </div>
 
-        <div class="row div-button" style="display:flex; justify-content:center ; margin-top: 3rem;">
-            <a class="nav-link" 
-            style="
-            text-align: center;
-            border: none; 
-            background-color: #343a40; 
-            color:bisque;  
-            border-radius: 5px; 
-            cursor: pointer; 
-            color:#fff ; 
-            width: 10px 20px;" 
-
-            href="{% url 'pages:sobre' %}">Saiba Mais</a>
-        </div>
-    
 </div>
 
-
 <script src= "{% static '/js/slider.js' %}"></script>
-
-
-
-
-
+<style>
+    body {
+        background-image: url("{% static 'img/fundo01.jpg' %}"); /* Substitua pelo caminho da sua imagem */
+        background-size: cover; /* Ajusta a imagem para cobrir toda a página */
+        background-repeat: no-repeat; /* Impede que a imagem se repita */
+        background-attachment: fixed; /* Fixa o fundo ao rolar a página */
+    }
+</style>
 
 {% endblock %}
 
 {% block 'footer' %}
-
-    <div class="footer footer-dark bg-dark fluid-down">
-        <p>Unindo alunos e empresas para soluções reais</p>
-    </div>
-
+<div class="container-fluid footer footer-dark bg-dark fluid-down">
+    <p class="text-center">Unindo alunos e empresas para soluções reais</p>  <!-- Centraliza o texto do footer -->
+</div>
 {% endblock %}
