@@ -2,7 +2,7 @@
 {% load static %}
 
 <html lang="pt-br">
-
+<body class="custom-scrollbar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -12,15 +12,24 @@
     {% endblock %}
 </head>
 
-<body>
+<nav>
+    {% block 'nav' %}
+    {% endblock %}
+</nav>
+
+<main>
     
-    {% block 'body' %}
+    {% block 'main' %}
     {% endblock %}
 
-    <footer>
-        {% block 'footer' %}
-        {% endblock %}
-    </footer>
+</main>
+
+    {% block 'footer' %}
+    {% endblock %}
+
+
+    {% block 'body2' %}
+    {% endblock %}
 
 </body>
 </html>

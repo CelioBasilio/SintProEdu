@@ -19,7 +19,8 @@
       </a>
       {% if user.groups.all.0.name == "GrupoEmpresa" %}
       <a href="{% url 'listar-projeto' %}">
-      {% endif %}
+          {% endif %}
+      </a>
       {% if user.groups.all.0.name == "GrupoAluno" %}
       <a href="{% url 'listar-proalu' %}">
       {% endif %}

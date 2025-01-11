@@ -2,15 +2,12 @@
 
 {% load static %}
 
-{% block 'head2' %}
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
-{% endblock%}
 
 {% block title %}Listar Projetos{% endblock %}
 
 {% block content %}
 
-<div class="row col-12">
+
 
     <div class="fundo col-md-2">
             
@@ -20,6 +17,7 @@
       {% if user.groups.all.0.name == "GrupoEmpresa" %}
       <a href="{% url 'listar-projeto' %}">
       {% endif %}
+      </a>
       {% if user.groups.all.0.name == "GrupoAluno" %}
       <a href="{% url 'listar-proalu' %}">
       {% endif %}
@@ -123,5 +121,5 @@
             
         </div>
 
-</div>
+
 {% endblock %}

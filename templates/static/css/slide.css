@@ -79,7 +79,7 @@
 
 .navigation-auto{
     position: absolute;
-    bottom:78px; /* Posiciona na parte inferior do slider */
+    bottom:70px; /* Posiciona na parte inferior do slider */
     width: 60%; /* Faz com que a navegação ocupe toda a largura do slider */
     display: flex;
     justify-content: center;
