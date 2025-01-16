@@ -10,7 +10,7 @@
 {% block title %}{{ titulo }}{% endblock %}
 
 {% block content %}
-<div class="row col-12">
+
 
     <div class="fundo col-md-2">
             
@@ -20,7 +20,6 @@
       {% if user.groups.all.0.name == "GrupoEmpresa" %}
       <a href="{% url 'listar-projeto' %}">
           {% endif %}
-      </a>
       {% if user.groups.all.0.name == "GrupoAluno" %}
       <a href="{% url 'listar-proalu' %}">
       {% endif %}
@@ -28,7 +27,7 @@
       </a>
     </div>
 
-    <div class="areaprojeto col-6">
+    <div class="areaprojeto col-6 p-4 shadow rounded bg-white">
         
         {% if messages %}
         {% for message in messages %}
@@ -60,6 +59,6 @@
 
 
     </div>
-</div>
+
 
 {% endblock %}

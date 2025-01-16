@@ -9,7 +9,7 @@
 {% block title %}Enviar Mensagem{% endblock %}
 
 {% block content %}
-<div class="row col-12">
+
 
     <div class="fundo col-md-2">
             
@@ -19,6 +19,7 @@
       {% if user.groups.all.0.name == "GrupoEmpresa" %}
       <a href="{% url 'listar-projeto' %}">
       {% endif %}
+      </a>
       {% if user.groups.all.0.name == "GrupoAluno" %}
       <a href="{% url 'listar-proalu' %}">
       {% endif %}
@@ -28,7 +29,7 @@
 
     
 
-    <div class="areaprojeto col-6">
+    <div class="areaprojeto col-6 p-4 shadow rounded bg-white">
         <h2 class="textcenter">{{titulo}}</h2>
         
         <br>
@@ -57,6 +58,6 @@
                 </form>
         </div>
     </div>
-</div>
+
 
 {% endblock %}

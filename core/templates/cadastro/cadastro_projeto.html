@@ -11,7 +11,6 @@
 {% block content %}     
 
 {% if user.groups.all.0.name == "GrupoEmpresa" %}
-<div class="row col-12">
 
     <div class="fundo col-md-2">
             
@@ -24,7 +23,7 @@
 
     </div>
 
-    <div class="col-8 areaprojeto">
+    <div class="col-8 areaprojeto ">
 
         <div class="container-fluid">
         <h2 class="textcenter">Novo projeto</h2>
@@ -44,77 +43,87 @@
         
 
                              
-                <form class="formulario" action="{% url 'cadastrar-projeto' %}" method="POST">{% csrf_token %}
-    
-                    <div class="row">
-                        <div class="col-md-4">
-                            <span class="bold">Titulo do Pojeto</span>
-                            <input class="form-control input-form" name="titulo" id="titulo" type="text"
-                                   placeholder="Digite o Titulo...">
-                        </div>
-                    </div>
-                    <br>
-    
-                    <div class="row">
-                        
-                        <div class="col-4">
-                            <span class="bold">Área de atuação ligada ao projeto</span>
-                            <select class="form-control textcenter input-form" name="atuacao" id="atuacao">
-                                <option value="" disabled selected>Projeto destinado a que área...</option>
-                                <option value="ADM">Administração</option>
-                                <option value="AGR">Agricultura - Pecuária</option>
-                                <option value="ALI">Alimentação</option>
-                                <option value="ART">Artes - Arquitetura - Design</option>
-                                <option value="VEN">Comercial e Vendas</option>
-                                <option value="EXT">Comércio Exterior</option>
-                                <option value="COM">Comunicação - Marketing</option>
-                                <option value="CIV">Construção civil</option>
-                                <option value="ECO">Ecologia - Meio ambiente</option>
-                                <option value="EDU">Educação</option>
-                                <option value="ELE">Elétrica - Eletrônica</option>
-                                <option value="FIN">Financeira</option>
-                                <option value="GEO">Geologia - Agrimensura</option>
-                                <option value="HOT">Hotealaria - Turismo</option>
-                                <option value="INF">Informatica - TI</option>
-                                <option value="JUD">Jurídica</option>
-                                <option value="MEC">Mecânica - Mecatronica</option>
-                                <option value="QUI">Química</option>
-                                <option value="PRO">Produção - Industrial</option>
-                                <option value="SAU">Saúde</option>
-                                <option value="SUP">Suprimentos</option>
-                                <option value="TEL">Telecomunicação</option>
-                                <option value="VET">Veterinária</option>
-                            </select>
-                        
-                        </div>
-    
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-8">
-                            <span class="bold">Descrição do projeto</span>
-                            <textarea class="form-control input-form" name="descricao" id="descricao" rows="5"
-                                   placeholder="Descreva em detalhes sobre o projeto que gostaria realizar...">
-                            </textarea>
-                        </div>
-                    
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <span class="bold">Data de conclusão</span>
-                            <input class="form-control input-form" name="datalimite" id="datalimite" type="date">
-                        </div>
-                    </div>
+               <form class="p-4 shadow rounded bg-white" action="{% url 'cadastrar-projeto' %}" method="POST">
+    {% csrf_token %}
 
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button type="submit" class="btn btn-outline-secondary">Cadastrar Projeto</button>
-                    </div>
-
-
-                </form>
+    <!-- Título do projeto -->
+    <div class="mb-4">
+        <label for="titulo" class="form-label fw-bold">Título do Projeto</label>
+        <input
+            class="form-control"
+            name="titulo"
+            id="titulo"
+            type="text"
+            placeholder="Digite o título..."
+            required>
     </div>
-</div>
+
+    <!-- Área de atuação -->
+    <div class="mb-4">
+        <label for="atuacao" class="form-label fw-bold">Área de Atuação</label>
+        <select
+            class="form-select"
+            name="atuacao"
+            id="atuacao"
+            required>
+            <option value="" disabled selected>Projeto destinado a que área...</option>
+            <option value="ADM">Administração</option>
+            <option value="AGR">Agricultura - Pecuária</option>
+            <option value="ALI">Alimentação</option>
+            <option value="ART">Artes - Arquitetura - Design</option>
+            <option value="VEN">Comercial e Vendas</option>
+            <option value="EXT">Comércio Exterior</option>
+            <option value="COM">Comunicação - Marketing</option>
+            <option value="CIV">Construção civil</option>
+            <option value="ECO">Ecologia - Meio ambiente</option>
+            <option value="EDU">Educação</option>
+            <option value="ELE">Elétrica - Eletrônica</option>
+            <option value="FIN">Financeira</option>
+            <option value="GEO">Geologia - Agrimensura</option>
+            <option value="HOT">Hotealaria - Turismo</option>
+            <option value="INF">Informática - TI</option>
+            <option value="JUD">Jurídica</option>
+            <option value="MEC">Mecânica - Mecatrônica</option>
+            <option value="QUI">Química</option>
+            <option value="PRO">Produção - Industrial</option>
+            <option value="SAU">Saúde</option>
+            <option value="SUP">Suprimentos</option>
+            <option value="TEL">Telecomunicação</option>
+            <option value="VET">Veterinária</option>
+        </select>
+    </div>
+
+    <!-- Descrição do projeto -->
+    <div class="mb-4">
+        <label for="descricao" class="form-label fw-bold">Descrição do Projeto</label>
+        <textarea
+            class="form-control"
+            name="descricao"
+            id="descricao"
+            rows="5"
+            placeholder="Descreva em detalhes o projeto que gostaria de realizar..."
+            required></textarea>
+    </div>
+
+    <!-- Data de conclusão -->
+    <div class="mb-4">
+        <label for="datalimite" class="form-label fw-bold">Data de Conclusão</label>
+        <input
+            class="form-control"
+            name="datalimite"
+            id="datalimite"
+            type="date"
+            required>
+    </div>
+
+    <!-- Botão de envio -->
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="submit" class="btn btn-primary px-4 py-2">Cadastrar Projeto</button>
+    </div>
+</form>
+
+    </div>
+
 
 {% endif %}
 
